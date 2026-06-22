@@ -1,0 +1,26 @@
+---
+description: Context and workflow for iterating on the Scalentic homepage design
+alwaysApply: true
+---
+
+# Design iteration workflow
+
+Before changing the design or content of this site:
+
+1. Read `SITE_INFO.md` (source of truth for links, email, copy) and
+   `AI_DESIGN_LOG.md` (past changes + known gotchas).
+2. After making changes, append a dated entry to `AI_DESIGN_LOG.md` describing
+   what changed and any new pitfalls — so future iterations don't repeat them.
+   Keep it lean.
+
+# `index.html` is a self-extracting bundle, not plain HTML
+
+- Visible content lives as a JSON-encoded HTML string inside
+  `<script type="__bundler/template">`; assets are gzip+base64 in
+  `<script type="__bundler/manifest">`. Don't search/replace raw markup.
+- When rewriting the template, `JSON.stringify` does NOT escape `/`. Re-escape
+  `</script` -> `<\u002Fscript`, or the page breaks.
+- After editing, verify both template and manifest still `JSON.parse` cleanly.
+- Keep asset paths relative (served from the `/scalentic-homepage/` subpath).
+- For anything beyond tiny link/text tweaks, regenerate the page fresh from
+  `SITE_INFO.md` rather than hand-editing the bundle.
