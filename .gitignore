@@ -1,0 +1,15 @@
+# Astro intermediate output (published copy lives at repo root)
+astro-site/dist/
+astro-site/.astro/
+astro-site/node_modules/
+
+# Dependencies
+node_modules/
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Environment
+.env
+.env.*

@@ -1,0 +1,100 @@
+---
+const faqs = [
+  {
+    q: 'What kind of work can you automate?',
+    a: "If it's repetitive and rule-or-language based, it's a candidate. Most of our work falls into support, data movement, lead generation, and product search — but we always start by mapping your specific busywork.",
+  },
+  {
+    q: 'How long until something is live?',
+    a: 'Most first agents are running in under two weeks. We start narrow, get something working in production, then expand from there.',
+  },
+  {
+    q: 'Do we need a technical team?',
+    a: 'No. We handle the building and the running. Your team points us at the work and reviews the results — we take care of the rest.',
+  },
+  {
+    q: 'How do you handle our data and security?',
+    a: 'We work inside your tools and permissions, keep data scoped to the task, and sign whatever agreements your security team needs before anything touches production.',
+  },
+  {
+    q: 'What does it cost?',
+    a: "Engagements are scoped to the work, not seats — a fixed build fee to get the first agent live, then a simple monthly fee to run and maintain it. We'll quote it on the call.",
+  },
+];
+---
+
+<section id="faq">
+  <div class="inner">
+    <span class="eyebrow">FAQ</span>
+    <h2>Questions, answered.</h2>
+    {
+      faqs.map((f) => (
+        <details>
+          <summary>
+            {f.q}
+            <span class="faq-icon">+</span>
+          </summary>
+          <p>{f.a}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  section {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 108px 40px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 3.8vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin-bottom: 48px;
+    color: var(--text-bright);
+  }
+  details {
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  details:last-of-type {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 26px 0;
+    font-family: var(--serif);
+    font-size: clamp(19px, 1.6vw, 23px);
+    color: var(--text);
+  }
+  .faq-icon {
+    font-size: 24px;
+    color: var(--muted-2);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  details p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.62;
+    color: var(--muted);
+    padding: 0 0 28px;
+    max-width: 640px;
+  }
+  @media (max-width: 900px) {
+    .inner {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+</style>

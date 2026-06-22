@@ -1,0 +1,92 @@
+---
+import { SITE, BOOKING_URL, EMAIL } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="shell top">
+    <div>
+      <span class="wordmark">{SITE.wordmark}</span>
+      <p class="blurb">An AI automation agency. We build the quiet work, so your team does the real work.</p>
+    </div>
+    <div class="col">
+      <span class="col-title">Company</span>
+      <a class="navlink" href="#">About</a>
+      <a class="navlink" href="#customers">Customers</a>
+      <a class="navlink" href="#">Careers</a>
+    </div>
+    <div class="col">
+      <span class="col-title">Automate</span>
+      <a class="navlink" href="#automate">Customer support</a>
+      <a class="navlink" href="#automate">Data pipelines</a>
+      <a class="navlink" href="#automate">Lead generation</a>
+      <a class="navlink" href="#automate">Product search</a>
+    </div>
+    <div class="col">
+      <span class="col-title">Contact</span>
+      <a class="navlink" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      <a class="navlink" href={BOOKING_URL} target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+  <div class="shell bottom">
+    <span>© {year} Scalentic. All rights reserved.</span>
+    <span>Built quietly by Scalentic.</span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--line);
+  }
+  .top {
+    padding: 64px 40px 40px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .wordmark {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+    margin-bottom: 18px;
+  }
+  .blurb {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted-2);
+    max-width: 280px;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    font-size: 15px;
+  }
+  .col-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--muted-3);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .bottom {
+    padding: 24px 40px 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13.5px;
+    color: var(--muted-3);
+  }
+  @media (max-width: 760px) {
+    .top {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

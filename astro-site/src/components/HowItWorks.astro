@@ -1,0 +1,90 @@
+---
+const steps = [
+  {
+    n: '01',
+    title: 'Map the work',
+    body: 'We sit with your team, find the repetitive work, and pick the highest-leverage things to automate first.',
+  },
+  {
+    n: '02',
+    title: 'Build the agent',
+    body: 'We design, build, and test a custom AI agent that fits your stack, your data, and the way you sound.',
+  },
+  {
+    n: '03',
+    title: 'Run & maintain',
+    body: 'We deploy it, watch it, and keep improving it over time — you simply see the work quietly get done.',
+  },
+];
+---
+
+<section id="how">
+  <div class="shell inner">
+    <span class="eyebrow">How it works</span>
+    <h2>From busywork to autopilot, in three quiet steps.</h2>
+    <div class="steps">
+      {
+        steps.map((s) => (
+          <div class="step">
+            <div class="num">{s.n}</div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: 108px;
+    padding-bottom: 108px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 3.8vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    max-width: 640px;
+    margin-bottom: 64px;
+    color: var(--text-bright);
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .num {
+    font-family: var(--serif);
+    font-size: 34px;
+    color: var(--text);
+    padding-bottom: 20px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: var(--text-bright);
+  }
+  .step p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  @media (max-width: 760px) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>

@@ -1,0 +1,268 @@
+---
+import { SITE, BOOKING_URL } from '../consts';
+
+const rows = [
+  { n: '01', label: 'Customer support', status: 'resolving' },
+  { n: '02', label: 'Data pipelines', status: 'syncing' },
+  { n: '03', label: 'Lead generation', status: 'scoring' },
+  { n: '04', label: 'Product search', status: 'indexing' },
+];
+---
+
+<header>
+  <div class="shell grid">
+    <div class="copy">
+      <h1>The busywork,<br />handled quietly.</h1>
+      <p>{SITE.description}</p>
+      <div class="cta">
+        <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">Book a call</a>
+        <a class="btn btn-ghost" href="#automate">See what we automate</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <span class="tag">WHAT WE AUTOMATE</span>
+        <span class="live"><span class="dot"></span>LIVE</span>
+      </div>
+      <div class="panel-body">
+        <div class="target"></div>
+        <div class="scan"></div>
+        {
+          rows.map((r, i) => (
+            <div class="row" style={`--row-delay:${i * 2}s`}>
+              <span class="num">{r.n}</span>
+              <span class="label">{r.label}</span>
+              <span class="status">{r.status}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  header {
+    position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+  .grid {
+    padding-top: 110px;
+    padding-bottom: 96px;
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .copy {
+    max-width: 720px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(46px, 6.2vw, 84px);
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    color: var(--text-bright);
+  }
+  .copy p {
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.5vw, 21px);
+    line-height: 1.62;
+    color: var(--text-soft);
+    max-width: 520px;
+    margin-top: 28px;
+  }
+  .cta {
+    display: flex;
+    gap: 13px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+
+  .panel {
+    position: relative;
+    border: 1px solid var(--line-strong);
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0));
+    box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.85);
+    animation: panelIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 18px;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .tag {
+    position: relative;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: #8a887f;
+    background: linear-gradient(
+      90deg,
+      #8a887f 0%,
+      #8a887f 38%,
+      #f4f3ee 50%,
+      #8a887f 62%,
+      #8a887f 100%
+    );
+    background-size: 220% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: tagShimmer 3.2s ease-in-out infinite;
+  }
+  .tag::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    width: 6px;
+    height: 1.1em;
+    background: #f0efea;
+    transform: translateY(-50%);
+    animation: tagCursor 1.05s step-end infinite;
+  }
+  .live {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--text);
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text);
+    animation: scDot 1.8s ease-in-out infinite;
+  }
+  .panel-body {
+    position: relative;
+    padding: 8px 0;
+  }
+  .target {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 8px;
+    height: 72px;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.05);
+    animation: scTargetSlide 8s cubic-bezier(0.7, 0, 0.2, 1) infinite;
+    pointer-events: none;
+  }
+  .scan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 8px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    animation: scScan 8s linear infinite;
+    pointer-events: none;
+  }
+  .row {
+    --row-delay: 0s;
+    position: relative;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 18px;
+    animation: rowBg 8s infinite;
+    animation-delay: var(--row-delay);
+  }
+  .num {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    animation: scNum 8s infinite;
+    animation-delay: var(--row-delay);
+  }
+  .label {
+    flex: 1;
+    font-family: var(--serif);
+    font-size: 21px;
+    animation: scRowGlow 8s infinite;
+    animation-delay: var(--row-delay);
+  }
+  .status {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #8a887f;
+    animation: scStatus 8s infinite;
+    animation-delay: var(--row-delay);
+  }
+
+  @keyframes panelIn {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes tagShimmer {
+    0%,
+    100% {
+      background-position: 120% 0;
+    }
+    50% {
+      background-position: -20% 0;
+    }
+  }
+  @keyframes tagCursor {
+    0%,
+    45% {
+      opacity: 1;
+    }
+    46%,
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes rowBg {
+    0%,
+    22% {
+      background: transparent;
+    }
+    3%,
+    19% {
+      background: rgba(255, 255, 255, 0.04);
+    }
+    26%,
+    100% {
+      background: transparent;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding-top: 72px;
+      padding-bottom: 64px;
+    }
+  }
+</style>

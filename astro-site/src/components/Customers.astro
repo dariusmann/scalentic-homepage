@@ -1,0 +1,91 @@
+---
+const quotes = [
+  {
+    quote:
+      '“Scalentic took our entire support backlog off our plate in two weeks. We didn\u2019t hire — we just stopped doing the busywork.”',
+    name: 'Placeholder Name',
+    role: 'Head of Operations, Northwind',
+  },
+  {
+    quote:
+      '“Our data used to live in five places. Now it just\u2026 arrives, clean, exactly where we need it.”',
+    name: 'Placeholder Name',
+    role: 'Data Lead, Vertex',
+  },
+  {
+    quote: '“The automated lead follow-up alone paid for the whole engagement inside a month.”',
+    name: 'Placeholder Name',
+    role: 'Founder, Lumen',
+  },
+];
+---
+
+<section id="customers">
+  <div class="shell inner">
+    <span class="eyebrow">Customers</span>
+    <h2>Quietly making teams faster.</h2>
+    <div class="grid">
+      {
+        quotes.map((q) => (
+          <figure>
+            <blockquote>{q.quote}</blockquote>
+            <figcaption>
+              {q.name}
+              <br />
+              <span class="role">{q.role}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: 108px;
+    padding-bottom: 108px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 3.8vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    max-width: 600px;
+    margin-bottom: 64px;
+    color: var(--text-bright);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  figure {
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    padding-top: 28px;
+  }
+  blockquote {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: 26px;
+  }
+  figcaption {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .role {
+    color: var(--muted-3);
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+</style>

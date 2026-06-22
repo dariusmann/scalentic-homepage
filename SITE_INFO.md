@@ -51,11 +51,14 @@ LinkedIn link:
 | Default GitHub Pages URL | `https://dariusmann.github.io/scalentic-homepage/` |
 | Custom domain (apex) | `scalentic.com` |
 | Custom domain (www) | `www.scalentic.com` → CNAME to `dariusmann.github.io` |
-| Entry file | `index.html` (served from repo root on branch `main`) |
+| Source | `astro-site/` (Astro components + styles) |
+| Published files | `index.html` + `_astro/` at repo root |
+| Archived legacy site | `archive/legacy-bundle/index.html` (old self-extracting bundle) |
 
-> Deployment: push to `main` and GitHub Pages auto-redeploys. Keep `index.html`
-> at the repo root. If a custom domain is configured, a `CNAME` file in the repo
-> root holds the domain name.
+> **Deploy:** edit `astro-site/src/`, then run `npm run publish` from the repo
+> root. That builds Astro and copies `astro-site/dist/` → repo root. Push to
+> `main` and GitHub Pages auto-redeploys. If a custom domain is configured, a
+> `CNAME` file in the repo root holds the domain name.
 
 ---
 
@@ -84,7 +87,9 @@ Fill these in so AI-generated designs use the right copy. Replace the
 - [ ] Contact email is `darius.mann@scalentic.com` (and uses a `mailto:` link)
 - [ ] LinkedIn link points to `https://www.linkedin.com/in/darius-mann/`
 - [ ] External links open in a new tab (`target="_blank" rel="noopener"`)
-- [ ] Asset paths are **relative** (so they work on the `/scalentic-homepage/` subpath)
-- [ ] File is saved as `index.html` at the repo root
+- [ ] Asset paths work on the deployed URL (custom domain uses `/`; github.io
+  project URL needs `base: '/scalentic-homepage/'` in `astro-site/astro.config.mjs`
+  before `npm run publish`)
+- [ ] Ran `npm run publish` and committed root `index.html` + `_astro/`
 - [ ] Company name spelled "Scalentic"
 - [ ] Pushed to `main` and verified live

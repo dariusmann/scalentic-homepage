@@ -1,0 +1,16 @@
+{
+  "name": "scalentic-astro",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "publish": "npm run build && node ../scripts/publish-to-root.mjs",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^7.0.0"
+  }
+}

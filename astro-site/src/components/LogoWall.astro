@@ -1,0 +1,44 @@
+---
+const logos = ['Northwind', 'Lumen', 'Vertex', 'Cobalt', 'Atlas', 'Meridian'];
+---
+
+<section class="wall">
+  <div class="shell inner">
+    <span class="eyebrow-inline">Built for ambitious teams</span>
+    <div class="logos">
+      {logos.map((l) => <span>{l}</span>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wall {
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .eyebrow-inline {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--muted-3);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .logos {
+    display: flex;
+    align-items: center;
+    gap: clamp(28px, 4vw, 56px);
+    flex-wrap: wrap;
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--faint);
+  }
+</style>

@@ -1,0 +1,10 @@
+{
+  "name": "scalentic-homepage",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix astro-site",
+    "build": "npm run build --prefix astro-site",
+    "publish": "npm run build --prefix astro-site && node scripts/publish-to-root.mjs",
+    "preview": "npm run preview --prefix astro-site"
+  }
+}

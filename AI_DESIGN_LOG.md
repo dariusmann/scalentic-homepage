@@ -2,32 +2,64 @@
 
 Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
-## How `index.html` works (important)
+## How the site works (important)
 
-- `index.html` is a **self-extracting bundle**, not plain HTML.
-- The real page is a JSON-encoded HTML string inside
-  `<script type="__bundler/template">`. Assets (fonts/images) are gzip+base64
-  in `<script type="__bundler/manifest">`. JS unpacks it at runtime.
-- **Do not hand-edit the rendered text** by searching the raw file — the visible
-  copy lives in the JSON template, not as normal markup.
+- **Live site:** Astro static build at repo root (`index.html` + `_astro/`).
+- **Source:** `astro-site/src/` — edit components, styles, and `consts.ts`.
+- **Publish:** `npm run publish` from repo root (builds + copies to root).
+- **Legacy bundle:** archived in `archive/legacy-bundle/` (self-extracting HTML;
+  reference only).
 
 ## Gotchas (don't repeat these)
 
-- When rewriting the template, `JSON.stringify` does **not** escape `/`. A
-  literal `</script>` in the template will prematurely close the outer script
-  tag and break the page. Re-escape: `</script` -> `<\u002Fscript`.
-- Always re-verify after editing: both the template and manifest must still
-  `JSON.parse` cleanly.
-- Keep asset paths **relative** (site is served from the
-  `/scalentic-homepage/` subpath on GitHub Pages).
+- Do not hand-edit root `index.html` — it is **build output**. Edit Astro source
+  and re-run `npm run publish`.
+- Contact links live in `astro-site/src/consts.ts` (mirror `SITE_INFO.md`).
+- Custom domain (`scalentic.com`) uses `base: '/'`. The github.io project URL
+  needs `base: '/scalentic-homepage/'` in `astro.config.mjs` before publish.
+- Legacy bundle gotcha (archived): `JSON.stringify` does not escape `/` in
+  `</script>` — only relevant if editing `archive/legacy-bundle/`.
 
 ## Preferred workflow for design changes
 
-- For anything beyond tiny link/text tweaks, **regenerate the page** fresh
-  rather than editing the bundle. Use `SITE_INFO.md` as the source of truth.
-- After generating, run the `SITE_INFO.md` checklist.
+- Edit `astro-site/src/`, run `npm run publish`, then run the `SITE_INFO.md`
+  checklist before pushing to `main`.
 
 ## Change log
+
+### 2026-06-22 — Astro is now the live site
+- Archived old bundle → `archive/legacy-bundle/index.html` (+ README).
+- Added `scripts/publish-to-root.mjs` and root `package.json` (`npm run publish`
+  builds Astro and copies `dist/` → repo root).
+- Root `index.html` + `_astro/` are now published build output, not hand-edited.
+- Updated `SITE_INFO.md`, `README.md`, and design-iteration rule for new flow.
+
+### 2026-06-22 — LinkedIn icon button
+- Added `LinkedInButton.astro` with inline SVG from Simple Icons (CC0).
+  Replaces text "LinkedIn" link in the final CTA section.
+
+### 2026-06-22 — hero panel animation polish
+- Enhanced `Hero.astro` "WHAT WE AUTOMATE" panel: shimmer on header label +
+  blinking cursor, panel fade-in on load, per-row background highlight synced
+  with the existing scan/target cycle. Row delays now use `--row-delay` CSS var.
+
+### 2026-06-22 — added parallel Astro rebuild (`astro-site/`)
+- New Astro 7 project in `astro-site/`, kept **separate** from the root
+  `index.html` bundle (parallel experiment — the bundle is untouched).
+- Componentized the existing design 1:1 (nav, hero w/ animated "what we
+  automate" panel, logo wall, automate, how-it-works, customers, FAQ, final
+  CTA, footer). Same dark palette (`#0C0C0D`/`#131315`) + Hanken Grotesk /
+  Literata fonts (now loaded via Google Fonts `<link>`, not embedded base64).
+- Contact details live in ONE place: `astro-site/src/consts.ts` (booking URL,
+  `darius.mann@scalentic.com`, LinkedIn) — mirrors `SITE_INFO.md`. Edit there.
+- Run with `cd astro-site && npm run dev` (localhost:4321); `npm run build`
+  outputs to `astro-site/dist/`. `npm install` already run.
+- Gotcha for later deploy: `astro-site` is configured for a **root** deploy. If
+  it ever shares the GitHub Pages `/scalentic-homepage/` path, set
+  `base: '/scalentic-homepage/'` in `astro-site/astro.config.mjs`.
+- Footer email previously had visible text "hello@..." while linking to
+  darius.mann — in the Astro version the visible text now matches the real
+  address.
 
 ### 2026-06-22 — applied core contact details
 - All 4 "Book a call" buttons (nav, hero, contact section, footer) -> Outlook
