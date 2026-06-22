@@ -37,6 +37,10 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 - Replaced with rounded-square **S** icon (updated PNG).
 
 ### 2026-06-22 — GitHub Pages: disable Jekyll (`.nojekyll`)
+- Added empty `.nojekyll` in `astro-site/public/` (published to repo root). Without
+  it, GitHub Pages runs Jekyll and **drops `_astro/`** (underscore paths).
+
+### 2026-06-22 — Astro is now the live site
 - Archived old bundle → `archive/legacy-bundle/index.html` (+ README).
 - Added `scripts/publish-to-root.mjs` and root `package.json` (`npm run publish`
   builds Astro and copies `dist/` → repo root).
