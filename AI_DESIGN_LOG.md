@@ -17,6 +17,10 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 - Contact links live in `astro-site/src/consts.ts` (mirror `SITE_INFO.md`).
 - Custom domain (`scalentic.com`) uses `base: '/'`. The github.io project URL
   needs `base: '/scalentic-homepage/'` in `astro.config.mjs` before publish.
+- GitHub Pages runs **Jekyll** by default, which skips `_astro/` (underscore
+  folders). `astro-site/public/.nojekyll` disables Jekyll — must be at repo root
+  after publish. "EntryFilter: excluded /CNAME" in Jekyll logs is normal, not an
+  error; `.nojekyll` avoids Jekyll entirely.
 - Legacy bundle gotcha (archived): `JSON.stringify` does not escape `/` in
   `</script>` — only relevant if editing `archive/legacy-bundle/`.
 
@@ -30,8 +34,9 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 ### 2026-06-22 — favicon
 - Added `astro-site/public/favicon.png`; `Layout.astro` links it as site icon +
   apple-touch-icon. Re-run `npm run publish` after favicon changes.
+- Replaced with rounded-square **S** icon (updated PNG).
 
-### 2026-06-22 — Astro is now the live site
+### 2026-06-22 — GitHub Pages: disable Jekyll (`.nojekyll`)
 - Archived old bundle → `archive/legacy-bundle/index.html` (+ README).
 - Added `scripts/publish-to-root.mjs` and root `package.json` (`npm run publish`
   builds Astro and copies `dist/` → repo root).

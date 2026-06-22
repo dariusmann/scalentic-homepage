@@ -43,4 +43,4 @@ for (const name of fs.readdirSync(dist)) {
   copyEntry(src, dest);
 }
 
-console.log('Published astro-site/dist → repo root (index.html + _astro/)');
+console.log('Published astro-site/dist → repo root (index.html, _astro/, favicon.png, .nojekyll)');

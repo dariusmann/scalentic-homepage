@@ -57,8 +57,10 @@ LinkedIn link:
 
 > **Deploy:** edit `astro-site/src/`, then run `npm run publish` from the repo
 > root. That builds Astro and copies `astro-site/dist/` → repo root. Push to
-> `main` and GitHub Pages auto-redeploys. If a custom domain is configured, a
-> `CNAME` file in the repo root holds the domain name.
+> `main` and GitHub Pages auto-redeploys. The repo must include `.nojekyll` at
+> the root (copied from `astro-site/public/`) so GitHub Pages does not run
+> Jekyll — otherwise `_astro/` assets are skipped. If a custom domain is
+> configured, a `CNAME` file in the repo root holds the domain name.
 
 ---
 
