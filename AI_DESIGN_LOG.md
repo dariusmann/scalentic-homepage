@@ -27,6 +27,10 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-06-22 — favicon
+- Added `astro-site/public/favicon.png`; `Layout.astro` links it as site icon +
+  apple-touch-icon. Re-run `npm run publish` after favicon changes.
+
 ### 2026-06-22 — Astro is now the live site
 - Archived old bundle → `archive/legacy-bundle/index.html` (+ README).
 - Added `scripts/publish-to-root.mjs` and root `package.json` (`npm run publish`

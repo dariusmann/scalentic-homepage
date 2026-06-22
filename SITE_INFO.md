@@ -75,7 +75,7 @@ Fill these in so AI-generated designs use the right copy. Replace the
 | Primary call-to-action | Book a meeting (uses booking link above) |
 | Services / offerings | <!-- TODO --> |
 | About text | <!-- TODO --> |
-| Logo file | <!-- TODO: path or asset --> |
+| Logo file | `astro-site/public/favicon.png` |
 | Brand colors | <!-- TODO: e.g. primary #000000, accent #000000 --> |
 | Font(s) | Hanken Grotesk (current site) — change if desired |
 
