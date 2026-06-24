@@ -4,9 +4,6 @@
 export const SITE = {
   name: 'Scalentic',
   wordmark: 'scalentic',
-  tagline: 'The busywork, handled quietly.',
-  description:
-    'Scalentic builds and runs custom AI for support, data, leads, and search — so the repetitive work takes care of itself, and your team gets back to the real thing.',
 } as const;
 
 export const BOOKING_URL =
@@ -19,6 +16,6 @@ export const LINKEDIN = 'https://www.linkedin.com/in/darius-mann/';
 export const NAV_LINKS = [
   { href: '#automate', label: 'What we automate' },
   { href: '#how', label: 'How it works' },
-  { href: '#customers', label: 'Customers' },
+  { href: '#about', label: 'About' },
   { href: '#faq', label: 'FAQ' },
 ] as const;

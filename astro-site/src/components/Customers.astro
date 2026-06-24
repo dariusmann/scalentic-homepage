@@ -1,32 +1,20 @@
 ---
-const quotes = [
-  {
-    quote:
-      '“Scalentic took our entire support backlog off our plate in two weeks. We didn\u2019t hire — we just stopped doing the busywork.”',
-    name: 'Placeholder Name',
-    role: 'Head of Operations, Northwind',
-  },
-  {
-    quote:
-      '“Our data used to live in five places. Now it just\u2026 arrives, clean, exactly where we need it.”',
-    name: 'Placeholder Name',
-    role: 'Data Lead, Vertex',
-  },
-  {
-    quote: '“The automated lead follow-up alone paid for the whole engagement inside a month.”',
-    name: 'Placeholder Name',
-    role: 'Founder, Lumen',
-  },
-];
+import type { Campaign } from '../campaigns';
+
+interface Props {
+  customers: Campaign['customers'];
+}
+
+const { customers } = Astro.props;
 ---
 
 <section id="customers">
   <div class="shell inner">
     <span class="eyebrow">Customers</span>
-    <h2>Quietly making teams faster.</h2>
+    <h2>{customers.headline}</h2>
     <div class="grid">
       {
-        quotes.map((q) => (
+        customers.quotes.map((q) => (
           <figure>
             <blockquote>{q.quote}</blockquote>
             <figcaption>

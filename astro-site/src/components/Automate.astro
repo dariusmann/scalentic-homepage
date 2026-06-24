@@ -1,26 +1,11 @@
 ---
-const items = [
-  {
-    n: '01',
-    title: 'Customer support',
-    body: 'Tickets triaged, answered, and resolved around the clock — in your voice, with a clean handoff to a human whenever it matters.',
-  },
-  {
-    n: '02',
-    title: 'Data pipelines',
-    body: 'Data moved, cleaned, deduplicated, and synced between the tools you already use — quietly, on schedule, without the manual exports.',
-  },
-  {
-    n: '03',
-    title: 'Lead generation',
-    body: 'Inbound and outbound leads found, qualified, and followed up automatically — so good prospects never sit waiting for a reply.',
-  },
-  {
-    n: '04',
-    title: 'Product search',
-    body: 'Catalogs indexed into fast, relevant search and recommendations — so customers find the right thing instead of leaving.',
-  },
-];
+import type { Campaign } from '../campaigns';
+
+interface Props {
+  automate: Campaign['automate'];
+}
+
+const { automate } = Astro.props;
 ---
 
 <section id="automate">
@@ -28,16 +13,14 @@ const items = [
     <div class="head">
       <div>
         <span class="eyebrow">What we automate</span>
-        <h2>Four kinds of work we take off your plate.</h2>
+        <h2>{automate.headline}</h2>
       </div>
-      <p class="head-note">
-        Each one is a custom agent — built for your stack, your data, and your tone of voice.
-      </p>
+      <p class="head-note">{automate.headNote}</p>
     </div>
 
     <div class="rows">
       {
-        items.map((it) => (
+        automate.items.map((it) => (
           <div class="row">
             <span class="num">{it.n}</span>
             <h3>{it.title}</h3>

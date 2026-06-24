@@ -31,6 +31,19 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-06-24 — copy refresh + About section
+- Removed logo wall and customer testimonials sections. Added About section
+  (`#about`) with founder photo at `public/images/darius.jpg`. Updated hero,
+  how-it-works (now four steps), footer tagline, and meta description in default
+  campaign. Nav: `#customers` → `#about`.
+
+### 2026-06-24 — campaign homepage swap (option B)
+- Homepage copy lives in `astro-site/src/campaigns/` (`default`, `support`,
+  `leads`, `data`). Switch the live angle by editing `ACTIVE_CAMPAIGN_ID` in
+  `campaigns/active.ts`, then `npm run publish` and push. Only one campaign is
+  live at `https://scalentic.com/` at a time — older outreach emails will show
+  whatever is currently deployed. Contact links stay in `consts.ts`.
+
 ### 2026-06-24 — docs folder
 - Moved all markdown files to `docs/` (preserving `astro-site/` and `archive/`
   subpaths). Root `README.md` now points here. Updated cursor rule and

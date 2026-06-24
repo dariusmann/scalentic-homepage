@@ -1,30 +1,20 @@
 ---
-const steps = [
-  {
-    n: '01',
-    title: 'Map the work',
-    body: 'We sit with your team, find the repetitive work, and pick the highest-leverage things to automate first.',
-  },
-  {
-    n: '02',
-    title: 'Build the agent',
-    body: 'We design, build, and test a custom AI agent that fits your stack, your data, and the way you sound.',
-  },
-  {
-    n: '03',
-    title: 'Run & maintain',
-    body: 'We deploy it, watch it, and keep improving it over time — you simply see the work quietly get done.',
-  },
-];
+import type { Campaign } from '../campaigns';
+
+interface Props {
+  howItWorks: Campaign['howItWorks'];
+}
+
+const { howItWorks } = Astro.props;
 ---
 
 <section id="how">
   <div class="shell inner">
     <span class="eyebrow">How it works</span>
-    <h2>From busywork to autopilot, in three quiet steps.</h2>
+    <h2>{howItWorks.headline}</h2>
     <div class="steps">
       {
-        steps.map((s) => (
+        howItWorks.steps.map((s) => (
           <div class="step">
             <div class="num">{s.n}</div>
             <h3>{s.title}</h3>

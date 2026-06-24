@@ -1,24 +1,26 @@
 ---
+import { campaign } from '../campaigns';
+import { SITE } from '../consts';
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
-import LogoWall from '../components/LogoWall.astro';
 import Automate from '../components/Automate.astro';
 import HowItWorks from '../components/HowItWorks.astro';
-import Customers from '../components/Customers.astro';
+import About from '../components/About.astro';
 import Faq from '../components/Faq.astro';
 import FinalCta from '../components/FinalCta.astro';
 import Footer from '../components/Footer.astro';
+
+const title = campaign.meta.title ?? `${SITE.name} — AI automation agency`;
 ---
 
-<Layout>
+<Layout title={title} description={campaign.meta.description}>
   <Nav />
-  <Hero />
-  <LogoWall />
-  <Automate />
-  <HowItWorks />
-  <Customers />
-  <Faq />
-  <FinalCta />
+  <Hero hero={campaign.hero} />
+  <Automate automate={campaign.automate} />
+  <HowItWorks howItWorks={campaign.howItWorks} />
+  <About />
+  <Faq faq={campaign.faq} />
+  <FinalCta finalCta={campaign.finalCta} />
   <Footer />
 </Layout>

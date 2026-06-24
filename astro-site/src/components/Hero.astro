@@ -1,19 +1,28 @@
 ---
-import { SITE, BOOKING_URL } from '../consts';
+import { BOOKING_URL } from '../consts';
+import type { Campaign } from '../campaigns';
 
-const rows = [
-  { n: '01', label: 'Customer support', status: 'resolving' },
-  { n: '02', label: 'Data pipelines', status: 'syncing' },
-  { n: '03', label: 'Lead generation', status: 'scoring' },
-  { n: '04', label: 'Product search', status: 'indexing' },
-];
+interface Props {
+  hero: Campaign['hero'];
+}
+
+const { hero } = Astro.props;
 ---
 
 <header>
   <div class="shell grid">
     <div class="copy">
-      <h1>The busywork,<br />handled quietly.</h1>
-      <p>{SITE.description}</p>
+      <h1>
+        {
+          hero.headlineLines.map((line, i) => (
+            <>
+              {i > 0 && <br />}
+              {line}
+            </>
+          ))
+        }
+      </h1>
+      <p>{hero.description}</p>
       <div class="cta">
         <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">Book a call</a>
         <a class="btn btn-ghost" href="#automate">See what we automate</a>
@@ -29,7 +38,7 @@ const rows = [
         <div class="target"></div>
         <div class="scan"></div>
         {
-          rows.map((r, i) => (
+          hero.panelRows.map((r, i) => (
             <div class="row" style={`--row-delay:${i * 2}s`}>
               <span class="num">{r.n}</span>
               <span class="label">{r.label}</span>

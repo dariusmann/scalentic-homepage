@@ -1,12 +1,28 @@
 ---
 import { BOOKING_URL, EMAIL } from '../consts';
+import type { Campaign } from '../campaigns';
 import LinkedInButton from './LinkedInButton.astro';
+
+interface Props {
+  finalCta: Campaign['finalCta'];
+}
+
+const { finalCta } = Astro.props;
 ---
 
 <section id="contact">
   <div class="shell inner">
-    <h2>Let's take the busywork<br />off your plate.</h2>
-    <p>A short call is all it takes to find the first thing worth automating.</p>
+    <h2>
+      {
+        finalCta.headlineLines.map((line, i) => (
+          <>
+            {i > 0 && <br />}
+            {line}
+          </>
+        ))
+      }
+    </h2>
+    <p>{finalCta.subtext}</p>
     <div class="cta">
       <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">Book a call</a>
       <a class="btn btn-ghost" href={`mailto:${EMAIL}`}>{EMAIL}</a>

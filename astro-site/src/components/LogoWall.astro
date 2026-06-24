@@ -1,12 +1,18 @@
 ---
-const logos = ['Northwind', 'Lumen', 'Vertex', 'Cobalt', 'Atlas', 'Meridian'];
+import type { Campaign } from '../campaigns';
+
+interface Props {
+  logoWall: Campaign['logoWall'];
+}
+
+const { logoWall } = Astro.props;
 ---
 
 <section class="wall">
   <div class="shell inner">
-    <span class="eyebrow-inline">Built for ambitious teams</span>
+    <span class="eyebrow-inline">{logoWall.eyebrow}</span>
     <div class="logos">
-      {logos.map((l) => <span>{l}</span>)}
+      {logoWall.logos.map((l) => <span>{l}</span>)}
     </div>
   </div>
 </section>

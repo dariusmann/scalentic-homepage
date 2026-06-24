@@ -1,0 +1,87 @@
+---
+const imageSrc = `${import.meta.env.BASE_URL}images/darius.jpg`;
+---
+
+<section id="about">
+  <div class="shell inner">
+    <span class="eyebrow">About</span>
+    <div class="grid">
+      <figure class="photo">
+        <img src={imageSrc} alt="Darius Mann — founder of Scalentic" />
+        <figcaption>Darius Mann — Founder &amp; AI Engineer, Scalentic</figcaption>
+      </figure>
+      <div class="copy">
+        <h2>The person behind Scalentic.</h2>
+        <p>
+          I'm Darius, a freelance AI engineer and transformation partner based between Warsaw and
+          Berlin. I've spent the last nine years building software — the last two specifically in
+          production AI systems. I work with a small number of clients at a time, which means you
+          get my full attention, not a junior hand-off.
+        </p>
+        <p>
+          I started Scalentic because most companies don't need a big agency — they need someone
+          who can sit with them, understand the real problem, and build something that actually
+          works. That's what I do. I lead the discovery, run the project, write the code, and stay
+          on to make sure it holds.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: 108px;
+    padding-bottom: 108px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 0.65fr 1.35fr;
+    gap: 72px;
+    align-items: start;
+    margin-top: 48px;
+  }
+  .photo {
+    margin: 0;
+  }
+  .photo img {
+    display: block;
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid var(--line-strong);
+  }
+  figcaption {
+    font-family: var(--serif);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted-3);
+    margin-top: 14px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 3.8vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text-bright);
+    margin-bottom: 28px;
+  }
+  .copy p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .copy p + p {
+    margin-top: 20px;
+  }
+  @media (max-width: 960px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+</style>
