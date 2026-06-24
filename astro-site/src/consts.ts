@@ -1,5 +1,5 @@
 // Single source of truth for the details that must stay correct.
-// Mirrors SITE_INFO.md at the repo root.
+// Mirrors docs/SITE_INFO.md.
 
 export const SITE = {
   name: 'Scalentic',

@@ -31,6 +31,17 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-06-24 — docs folder
+- Moved all markdown files to `docs/` (preserving `astro-site/` and `archive/`
+  subpaths). Root `README.md` now points here. Updated cursor rule and
+  `consts.ts` comment paths.
+
+### 2026-06-24 — assets folder
+- Moved static images to `astro-site/public/assets/` (`favicon.png`,
+  `darius-mann.jpg`). `Layout.astro` now links `assets/favicon.png`. Removed
+  duplicate root `favicon.png` and ChatGPT PNG (same file). Re-run publish after
+  asset path changes.
+
 ### 2026-06-22 — favicon
 - Added `astro-site/public/favicon.png`; `Layout.astro` links it as site icon +
   apple-touch-icon. Re-run `npm run publish` after favicon changes.

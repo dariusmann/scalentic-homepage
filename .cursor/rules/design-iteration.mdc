@@ -7,11 +7,11 @@ alwaysApply: true
 
 Before changing the design or content of this site:
 
-1. Read `SITE_INFO.md` (source of truth for links, email, copy) and
-   `AI_DESIGN_LOG.md` (past changes + known gotchas).
+1. Read `docs/SITE_INFO.md` (source of truth for links, email, copy) and
+   `docs/AI_DESIGN_LOG.md` (past changes + known gotchas).
 2. Edit the **Astro source** in `astro-site/src/` (not the published root
    `index.html` — that file is build output).
-3. After making changes, append a dated entry to `AI_DESIGN_LOG.md` describing
+3. After making changes, append a dated entry to `docs/AI_DESIGN_LOG.md` describing
    what changed and any new pitfalls — so future iterations don't repeat them.
    Keep it lean.
 4. Run `npm run publish` from the repo root before deploying; commit the updated

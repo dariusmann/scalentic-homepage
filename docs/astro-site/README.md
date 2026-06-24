@@ -5,7 +5,7 @@ static build published to the **repo root** (`index.html` + `_astro/`).
 
 ## Edit here
 
-- `src/consts.ts` — booking URL, email, LinkedIn (keep in sync with `SITE_INFO.md`)
+- `src/consts.ts` — booking URL, email, LinkedIn (keep in sync with `../SITE_INFO.md`)
 - `src/components/` — page sections
 - `src/pages/index.astro` — page assembly
 - `src/styles/global.css` — design tokens and shared styles
