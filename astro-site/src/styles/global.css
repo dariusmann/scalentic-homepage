@@ -103,50 +103,6 @@ details[open] .faq-icon {
   transform: rotate(45deg);
 }
 
-/* Hero "what we automate" live panel animations */
-@keyframes scTargetSlide {
-  0% { transform: translateY(0); }
-  19% { transform: translateY(0); }
-  25% { transform: translateY(72px); }
-  44% { transform: translateY(72px); }
-  50% { transform: translateY(144px); }
-  69% { transform: translateY(144px); }
-  75% { transform: translateY(216px); }
-  94% { transform: translateY(216px); }
-  100% { transform: translateY(0); }
-}
-@keyframes scRowGlow {
-  0% { color: rgba(240, 239, 234, 0.34); }
-  3% { color: #f4f3ee; }
-  22% { color: #f4f3ee; }
-  26% { color: rgba(240, 239, 234, 0.34); }
-  100% { color: rgba(240, 239, 234, 0.34); }
-}
-@keyframes scNum {
-  0% { background: transparent; color: rgba(240, 239, 234, 0.3); border-color: rgba(255, 255, 255, 0.14); }
-  3% { background: #f4f3ee; color: #0c0c0d; border-color: #f4f3ee; }
-  22% { background: #f4f3ee; color: #0c0c0d; border-color: #f4f3ee; }
-  26% { background: transparent; color: rgba(240, 239, 234, 0.3); border-color: rgba(255, 255, 255, 0.14); }
-  100% { background: transparent; color: rgba(240, 239, 234, 0.3); border-color: rgba(255, 255, 255, 0.14); }
-}
-@keyframes scStatus {
-  0% { opacity: 0; transform: translateX(6px); }
-  4% { opacity: 1; transform: translateX(0); }
-  22% { opacity: 1; transform: translateX(0); }
-  26% { opacity: 0; transform: translateX(6px); }
-  100% { opacity: 0; transform: translateX(6px); }
-}
-@keyframes scDot {
-  0%, 100% { opacity: 0.3; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.15); }
-}
-@keyframes scScan {
-  0% { transform: translateY(-12px); opacity: 0; }
-  8% { opacity: 0.55; }
-  92% { opacity: 0.55; }
-  100% { transform: translateY(300px); opacity: 0; }
-}
-
 @media (max-width: 900px) {
   .shell {
     padding-left: 24px;
@@ -155,10 +111,13 @@ details[open] .faq-icon {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
+  html {
+    scroll-behavior: auto;
   }
-  .tag::after {
-    display: none;
+  .btn {
+    transition: none;
+  }
+  .navlink {
+    transition: none;
   }
 }

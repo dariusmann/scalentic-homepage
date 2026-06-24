@@ -31,6 +31,16 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-06-24 — hero panel "agent at work" animation
+- Upgraded `Hero.astro` automate panel: 8s shared timeline with focus-sweep
+  highlight (`cubic-bezier(.7,0,.2,1)`), faint vertical scan line, per-row chip
+  invert + label brighten + status word fade, progress underline on active row,
+  LIVE dot pulse. Keyframes moved from `global.css` into scoped Hero styles.
+  `prefers-reduced-motion`: freezes on row 01 active (no movement).
+- Fixed broken reduced-motion block that leaked `.target { transform: translateY(0) }`
+  globally (froze highlight). Removed global `* { animation: none }` from
+  `global.css` — it disabled all panel motion when OS reduce-motion was on.
+
 ### 2026-06-24 — hero headline size + FAQ trim
 - Reduced hero `h1` font size (`clamp(36px, 4.6vw, 58px)`) — previous scale was
   too large for the longer two-line headline.
