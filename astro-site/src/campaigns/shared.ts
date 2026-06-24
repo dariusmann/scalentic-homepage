@@ -3,23 +3,18 @@ import type { AutomateItem, FaqItem, HowItWorksStep } from './types';
 export const AUTOMATE_ITEMS: readonly AutomateItem[] = [
   {
     n: '01',
-    title: 'Customer support automation',
-    body: 'Faster response times, higher ticket resolution rates, and consistent quality — around the clock, without growing your support team.',
+    title: 'Operations',
+    body: 'Repetitive internal work — ticket handling, data movement, document processing, reporting — automated so your ops team spends time on decisions, not manual tasks. Faster turnaround, fewer errors, same headcount.',
   },
   {
     n: '02',
-    title: 'Data pipelines & ETL',
-    body: 'Clean, reliable data arriving exactly where you need it — saving hours of manual exports and eliminating costly errors downstream.',
+    title: 'Sales',
+    body: 'More leads qualified, followed up faster, and moved through the pipeline without adding SDRs. I automate prospecting, enrichment, outreach sequences, and CRM updates — so your sales team focuses on closing, not admin.',
   },
   {
     n: '03',
-    title: 'Lead generation & outreach',
-    body: 'More qualified leads reached, followed up faster, and converted more often — without adding sales headcount.',
-  },
-  {
-    n: '04',
-    title: 'Product search & discovery',
-    body: 'Customers finding the right product faster means higher conversion, lower bounce, and more revenue per session.',
+    title: 'Marketing',
+    body: 'AI-assisted workflows for the work that eats time without adding value — ad performance monitoring, content generation pipelines, influencer research and tracking, campaign reporting. More campaigns, less manual coordination.',
   },
 ];
 
@@ -49,7 +44,7 @@ export const HOW_IT_WORKS_STEPS: readonly HowItWorksStep[] = [
 export const FAQ_ITEMS: readonly FaqItem[] = [
   {
     q: 'What kind of work can you automate?',
-    a: "If it involves repetitive decisions, data movement, or language processing, it's a candidate. My experience is deepest in support automation, data pipelines, lead generation, and product search — but I always start by identifying where the biggest productivity gain is hiding.",
+    a: "If it involves repetitive decisions, data movement, or language processing, it's a candidate. My experience is deepest in operations, sales, and marketing automation — but I always start by identifying where the biggest productivity gain is hiding.",
   },
   {
     q: 'How long until something is live?',

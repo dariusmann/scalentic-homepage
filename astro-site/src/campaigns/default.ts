@@ -10,18 +10,17 @@ const campaign: Campaign = {
   },
   hero: {
     headlineLines: [
-      'AI automations that make your team measurably more productive —',
-      'without hiring.',
+      'AI automations that make your team measurably more productive.',
     ],
     description:
-      'I help ambitious teams identify where AI can have the biggest impact, then build and run the automations that deliver it. More output, same team, no extra headcount.',
+      'More output, same team — without adding headcount or complexity.',
   },
   automate: {
-    headline: 'Where automations move the needle.',
+    headline: 'More output from the team you already have.',
     headNote:
-      "Every engagement is built from scratch around your process and your tools. Here's where I have the most experience delivering results:",
+      'I build AI automations across the core functions where productivity gains compound the fastest. Every engagement is built from scratch around your tools and your process.',
     footNote:
-      "Don't see your use case? Most interesting problems don't fit a neat category. Let's talk about what better output looks like for you.",
+      "Don't see your use case? Most interesting problems don't fit a neat category. Let's talk about what more output looks like for your team.",
     items: AUTOMATE_ITEMS,
   },
   howItWorks: {

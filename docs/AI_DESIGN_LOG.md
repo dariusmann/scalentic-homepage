@@ -31,6 +31,23 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-06-24 — automate footnote callout
+- `#automate` footer note is now an `<aside class="foot-callout">`: `bg-alt` panel,
+  left accent border, larger serif type; lead sentence before `?` uses brighter
+  weight-500 text. Splits on first `?` so campaign `footNote` stays one string.
+
+### 2026-06-24 — hero headline and subhead tightened
+- Headline shortened to one line (drops "— without hiring."); subhead replaced
+  with "More output, same team — without adding headcount or complexity."
+  (`default.ts` hero copy).
+
+### 2026-06-24 — automate section copy refresh (solo positioning)
+- Nav label `#automate` → "What I automate" (`consts.ts`; consumed by `Nav.astro`).
+- `#automate` eyebrow, headline, subhead, three rows (Operations / Sales /
+  Marketing), and footer note updated in `Automate.astro`, `default.ts`, `shared.ts`.
+- FAQ first answer now cites operations, sales, marketing (`shared.ts`).
+- Footer "Automate" column links updated; "Careers" removed from Company column.
+
 ### 2026-06-24 — hero boxless "output vs. team" chart
 - Replaced framed `.panel` in `Hero.astro` with a boxless `.hero-chart` canvas in
   the right column: Team vs. Output lines, "same team" label, "8× output"

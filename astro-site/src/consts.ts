@@ -14,7 +14,7 @@ export const EMAIL = 'darius.mann@scalentic.com';
 export const LINKEDIN = 'https://www.linkedin.com/in/darius-mann/';
 
 export const NAV_LINKS = [
-  { href: '#automate', label: 'What we automate' },
+  { href: '#automate', label: 'What I automate' },
   { href: '#how', label: 'How it works' },
   { href: '#about', label: 'About' },
   { href: '#faq', label: 'FAQ' },

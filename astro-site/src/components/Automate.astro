@@ -6,13 +6,18 @@ interface Props {
 }
 
 const { automate } = Astro.props;
+
+const footNote = automate.footNote;
+const footNoteQ = footNote?.indexOf('?') ?? -1;
+const footNoteLead = footNoteQ >= 0 ? footNote!.slice(0, footNoteQ + 1) : '';
+const footNoteBody = footNoteQ >= 0 ? footNote!.slice(footNoteQ + 1).trim() : footNote;
 ---
 
 <section id="automate">
   <div class="shell inner">
     <div class="head">
       <div>
-        <span class="eyebrow">What we automate</span>
+        <span class="eyebrow">What I automate</span>
         <h2>{automate.headline}</h2>
       </div>
       <p class="head-note">{automate.headNote}</p>
@@ -29,7 +34,21 @@ const { automate } = Astro.props;
         ))
       }
     </div>
-    {automate.footNote && <p class="head-note foot-note">{automate.footNote}</p>}
+    {
+      footNote && (
+        <aside class="foot-callout">
+          <p>
+            {footNoteLead ? (
+              <>
+                <span class="foot-callout-lead">{footNoteLead}</span> {footNoteBody}
+              </>
+            ) : (
+              footNote
+            )}
+          </p>
+        </aside>
+      )
+    }
   </div>
 </section>
 
@@ -65,9 +84,24 @@ const { automate } = Astro.props;
     color: var(--muted);
     max-width: 300px;
   }
-  .foot-note {
-    margin-top: 40px;
-    max-width: 640px;
+  .foot-callout {
+    margin-top: 48px;
+    max-width: 720px;
+    padding: 28px 32px 30px;
+    border: 1px solid var(--line-strong);
+    border-left: 3px solid rgba(255, 255, 255, 0.32);
+    border-radius: 16px;
+    background: var(--bg-alt);
+  }
+  .foot-callout p {
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.5vw, 21px);
+    line-height: 1.65;
+    color: var(--text-soft);
+  }
+  .foot-callout-lead {
+    color: var(--text-bright);
+    font-weight: 500;
   }
   .row {
     display: flex;
