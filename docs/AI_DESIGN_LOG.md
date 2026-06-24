@@ -31,6 +31,12 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-06-24 — hero headline size + FAQ trim
+- Reduced hero `h1` font size (`clamp(36px, 4.6vw, 58px)`) — previous scale was
+  too large for the longer two-line headline.
+- Reduced final CTA `h2` to the same scale (was `clamp(40px, 5.6vw, 80px)`).
+- Removed "What does it cost?" from shared `FAQ_ITEMS`.
+
 ### 2026-06-24 — productivity-focused copy refresh
 - Updated default campaign copy: hero, automate (incl. optional `footNote` below
   cards), how-it-works, FAQ (first four), final CTA, meta description. About

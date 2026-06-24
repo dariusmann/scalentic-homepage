@@ -63,8 +63,4 @@ export const FAQ_ITEMS: readonly FaqItem[] = [
     q: 'How do you handle our data and security?',
     a: 'I work inside your existing tools and permissions, keep data scoped to the task, and sign whatever agreements your security team needs before anything touches production.',
   },
-  {
-    q: 'What does it cost?',
-    a: "Engagements are scoped to the work, not seats — a fixed build fee to get the first agent live, then a simple monthly fee to run and maintain it. We'll quote it on the call.",
-  },
 ];
