@@ -31,6 +31,13 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-06-24 — productivity-focused copy refresh
+- Updated default campaign copy: hero, automate (incl. optional `footNote` below
+  cards), how-it-works, FAQ (first four), final CTA, meta description. About
+  paragraphs and footer tagline updated in components. Shared `AUTOMATE_ITEMS`,
+  `HOW_IT_WORKS_STEPS`, and first four `FAQ_ITEMS` shifted to first-person "I"
+  voice.
+
 ### 2026-06-24 — copy refresh + About section
 - Removed logo wall and customer testimonials sections. Added About section
   (`#about`) with founder photo at `public/images/darius.jpg`. Updated hero,

@@ -38,6 +38,7 @@ export type Campaign = {
   automate: {
     headline: string;
     headNote: string;
+    footNote?: string;
     items: readonly AutomateItem[];
   };
   howItWorks: {

@@ -6,12 +6,15 @@ const campaign: Campaign = {
   label: 'General (default)',
   meta: {
     description:
-      'Scalentic helps ambitious teams understand what to automate, build the right AI systems, and keep them running — from first conversation to live production.',
+      'Scalentic designs and builds custom AI automations that make teams measurably more productive — without increasing headcount. From first conversation to live production, with one person throughout.',
   },
   hero: {
-    headlineLines: ['From unclear problem', 'to running system.'],
+    headlineLines: [
+      'AI automations that make your team measurably more productive —',
+      'without hiring.',
+    ],
     description:
-      'Most teams know something feels broken — but not exactly what to fix or where AI actually helps. Scalentic helps you figure that out, build the right thing, and keep it running. No in-house AI team needed.',
+      'I help ambitious teams identify where AI can have the biggest impact, then build and run the automations that deliver it. More output, same team, no extra headcount.',
     panelRows: [
       { n: '01', label: 'Customer support', status: 'resolving' },
       { n: '02', label: 'Data pipelines', status: 'syncing' },
@@ -20,21 +23,27 @@ const campaign: Campaign = {
     ],
   },
   automate: {
-    headline: 'Four kinds of work we take off your plate.',
+    headline: 'Where automations move the needle.',
     headNote:
-      'Each one is a custom agent — built for your stack, your data, and your tone of voice.',
+      "Every engagement is built from scratch around your process and your tools. Here's where I have the most experience delivering results:",
+    footNote:
+      "Don't see your use case? Most interesting problems don't fit a neat category. Let's talk about what better output looks like for you.",
     items: AUTOMATE_ITEMS,
   },
   howItWorks: {
-    headline: 'From first conversation to running system.',
+    headline: 'From first conversation to measurable results.',
     steps: HOW_IT_WORKS_STEPS,
   },
   faq: {
     faqs: FAQ_ITEMS,
   },
   finalCta: {
-    headlineLines: ['Let’s take the busywork', 'off your plate.'],
-    subtext: 'A short call is all it takes to find the first thing worth automating.',
+    headlineLines: [
+      'Let’s find where AI can make',
+      'the biggest difference for your team.',
+    ],
+    subtext:
+      'A short conversation is usually enough to identify the highest-leverage automation — and what measurable results to expect from it.',
   },
 };
 
