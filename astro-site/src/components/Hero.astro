@@ -29,17 +29,8 @@ const { hero } = Astro.props;
       </div>
     </div>
 
-    <div class="panel">
-      <div class="panel-head">
-        <span class="tag">OUTPUT VS. TEAM</span>
-        <span class="live"><span class="dot"></span>LIVE</span>
-      </div>
-      <div class="panel-body">
-        <span class="legend out"><i></i>Output</span>
-        <span class="legend team"><i></i>Team</span>
-        <span class="mult" data-mult>×1.0</span>
-        <canvas class="chart" data-output-chart></canvas>
-      </div>
+    <div class="hero-chart">
+      <canvas data-output-chart></canvas>
     </div>
   </div>
 </header>
@@ -83,167 +74,15 @@ const { hero } = Astro.props;
     flex-wrap: wrap;
   }
 
-  .panel {
+  .hero-chart {
     position: relative;
-    border: 1px solid var(--line-strong);
-    border-radius: 16px;
-    overflow: hidden;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0));
-    box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.85);
-    animation: panelIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    width: 100%;
+    height: 340px;
   }
-  .panel-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 18px;
-    border-bottom: 1px solid var(--line);
-    overflow: hidden;
-  }
-  .tag {
-    position: relative;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    color: #8a887f;
-    background: linear-gradient(
-      90deg,
-      #8a887f 0%,
-      #8a887f 38%,
-      #f4f3ee 50%,
-      #8a887f 62%,
-      #8a887f 100%
-    );
-    background-size: 220% 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: tagShimmer 3.2s ease-in-out infinite;
-  }
-  .tag::after {
-    content: '';
-    position: absolute;
-    right: -10px;
-    top: 50%;
-    width: 6px;
-    height: 1.1em;
-    background: #f0efea;
-    transform: translateY(-50%);
-    animation: tagCursor 1.05s step-end infinite;
-  }
-  .live {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    color: var(--text);
-  }
-  .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--text);
-    animation: scDot 1.8s ease-in-out infinite;
-  }
-  .panel-body {
-    position: relative;
-    height: 300px;
-  }
-  .chart {
+  .hero-chart canvas {
     display: block;
     width: 100%;
     height: 100%;
-  }
-  .legend {
-    position: absolute;
-    left: 18px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    z-index: 2;
-  }
-  .legend i {
-    display: inline-block;
-    width: 18px;
-    height: 2px;
-    border-radius: 2px;
-    background: currentColor;
-  }
-  .legend.out {
-    top: 16px;
-    color: var(--text-bright);
-  }
-  .legend.team {
-    bottom: 12px;
-    color: #8a887f;
-  }
-  .mult {
-    position: absolute;
-    top: 13px;
-    right: 18px;
-    font-family: var(--mono);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text-bright);
-    font-variant-numeric: tabular-nums;
-    z-index: 2;
-  }
-
-  @keyframes panelIn {
-    from {
-      opacity: 0;
-      transform: translateY(18px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes tagShimmer {
-    0%,
-    100% {
-      background-position: 120% 0;
-    }
-    50% {
-      background-position: -20% 0;
-    }
-  }
-  @keyframes tagCursor {
-    0%,
-    45% {
-      opacity: 1;
-    }
-    46%,
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes scDot {
-    0%,
-    100% {
-      opacity: 0.3;
-      transform: scale(0.8);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.15);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .panel,
-    .tag,
-    .dot {
-      animation: none !important;
-    }
-    .tag::after {
-      display: none;
-    }
   }
 
   @media (max-width: 960px) {
@@ -261,6 +100,8 @@ const { hero } = Astro.props;
     x = Math.max(0, Math.min(1, x));
     return x * x * (3 - 2 * x);
   };
+  const OUT = '#f4f3ee';
+  const TEAM = '#8a887f';
 
   function initOutputChart(canvas) {
     if (canvas.dataset.chartInit) return;
@@ -268,7 +109,6 @@ const { hero } = Astro.props;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    const multEl = canvas.parentElement?.querySelector('[data-mult]');
     let w = 0;
     let h = 0;
     let lastDp = 0;
@@ -285,13 +125,13 @@ const { hero } = Astro.props;
 
     function frame(dp) {
       if (w <= 0 || h <= 0) return;
-      const padT = 46;
-      const padB = 30;
-      const x0 = 4;
-      const x1 = w - 4;
+      const padT = 44;
+      const padB = 40;
+      const x0 = 8;
+      const x1 = w - 48;
       const base = h - padB;
-      const climb = base - padT;
       const span = x1 - x0;
+      const climb = base - padT;
       const xmax = x0 + span * dp;
       ctx.clearRect(0, 0, w, h);
 
@@ -305,10 +145,10 @@ const { hero } = Astro.props;
       ctx.beginPath();
       for (let x = x0; x <= xmax; x += 3) {
         const xn = (x - x0) / span;
-        const y = base - 8 - 6 * xn;
+        const y = base - 7 - 6 * xn;
         x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = '#8a887f';
+      ctx.strokeStyle = TEAM;
       ctx.lineWidth = 1.6;
       ctx.stroke();
 
@@ -316,20 +156,40 @@ const { hero } = Astro.props;
       ctx.beginPath();
       for (let x = x0; x <= xmax; x += 3) {
         const xn = (x - x0) / span;
-        const y = base - 8 - climb * 0.92 * Math.pow(xn, 2);
+        const y = base - 7 - climb * 0.9 * Math.pow(xn, 2);
         ey = y;
         x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = '#f4f3ee';
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = OUT;
+      ctx.lineWidth = 2.4;
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.arc(xmax, ey, 3.5, 0, Math.PI * 2);
-      ctx.fillStyle = '#f4f3ee';
+      ctx.arc(xmax, ey, 4, 0, Math.PI * 2);
+      ctx.fillStyle = OUT;
       ctx.fill();
 
-      if (multEl) multEl.textContent = '×' + (1 + 7 * dp).toFixed(1);
+      ctx.font = "500 13px 'Hanken Grotesk', sans-serif";
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillStyle = TEAM;
+      ctx.fillText('same team', x0, base + 24);
+
+      const a = ease((dp - 0.5) / 0.32);
+      if (a > 0) {
+        ctx.globalAlpha = a;
+        ctx.strokeStyle = 'rgba(244,243,238,0.5)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(xmax, ey);
+        ctx.lineTo(xmax - 48, ey - 32);
+        ctx.stroke();
+        ctx.font = "500 17px 'Literata', serif";
+        ctx.fillStyle = OUT;
+        ctx.textAlign = 'right';
+        ctx.fillText('8× output', xmax - 8, ey - 38);
+        ctx.globalAlpha = 1;
+      }
     }
 
     let start = null;
@@ -357,11 +217,6 @@ const { hero } = Astro.props;
       fit();
       frame(lastDp);
     }).observe(canvas);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      delete canvas.dataset.chartInit;
-    };
   }
 
   function bootCharts() {

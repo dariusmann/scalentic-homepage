@@ -31,6 +31,14 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-06-24 — hero boxless "output vs. team" chart
+- Replaced framed `.panel` in `Hero.astro` with a boxless `.hero-chart` canvas in
+  the right column: Team vs. Output lines, "same team" label, "8× output"
+  callout with leader line near peak. 5.5s loop. Script stays `is:inline` with
+  layout-safe rAF boot. **Gotcha:** do not gate canvas rAF on
+  `prefers-reduced-motion` — macOS/Cursor report it and freeze the chart at the
+  finished frame; canvas draw-in is low-risk motion.
+
 ### 2026-06-24 — hero panel "Output vs. Team" chart
 - Replaced automate row list in `Hero.astro` with a canvas chart: near-flat Team
   line vs. climbing Output line, ×1.0→×8.0 multiplier, legends. 5.5s loop with

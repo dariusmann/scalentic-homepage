@@ -1,10 +1,12 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.0.0"><title>Scalentic — AI automation agency</title><meta name="description" content="Scalentic designs and builds custom AI automations that make teams measurably more productive — without increasing headcount. From first conversation to live production, with one person throughout."><link rel="icon" type="image/png" href="/assets/favicon.png"><link rel="apple-touch-icon" href="/assets/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Literata:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/index.fRuxsyUO.css"></head><body>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.0.0"><title>Scalentic — AI automation agency</title><meta name="description" content="Scalentic designs and builds custom AI automations that make teams measurably more productive — without increasing headcount. From first conversation to live production, with one person throughout."><link rel="icon" type="image/png" href="/assets/favicon.png"><link rel="apple-touch-icon" href="/assets/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Literata:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/index.sPRe32hY.css"></head><body>
   <nav data-astro-cid-wpvy4v7s><div class="shell bar" data-astro-cid-wpvy4v7s><span class="wordmark" data-astro-cid-wpvy4v7s>scalentic</span><div class="links" data-astro-cid-wpvy4v7s><a class="navlink" href="#automate" data-astro-cid-wpvy4v7s>What we automate</a><a class="navlink" href="#how" data-astro-cid-wpvy4v7s>How it works</a><a class="navlink" href="#about" data-astro-cid-wpvy4v7s>About</a><a class="navlink" href="#faq" data-astro-cid-wpvy4v7s>FAQ</a></div><a class="btn btn-primary book" href="https://outlook.office.com/bookwithme/user/3d92a463b02643aeb260408442cec7e8@scalentic.com/meetingtype/-MGOWcehIkyZ7QUDXWYurA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener" data-astro-cid-wpvy4v7s>Book a call</a></div></nav>
-  <header data-astro-cid-ge2uvauf><div class="shell grid" data-astro-cid-ge2uvauf><div class="copy" data-astro-cid-ge2uvauf><h1 data-astro-cid-ge2uvauf>AI automations that make your team measurably more productive —<br data-astro-cid-ge2uvauf>without hiring.</h1><p data-astro-cid-ge2uvauf>I help ambitious teams identify where AI can have the biggest impact, then build and run the automations that deliver it. More output, same team, no extra headcount.</p><div class="cta" data-astro-cid-ge2uvauf><a class="btn btn-primary" href="https://outlook.office.com/bookwithme/user/3d92a463b02643aeb260408442cec7e8@scalentic.com/meetingtype/-MGOWcehIkyZ7QUDXWYurA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener" data-astro-cid-ge2uvauf>Book a call</a><a class="btn btn-ghost" href="#automate" data-astro-cid-ge2uvauf>See what we automate</a></div></div><div class="panel" data-astro-cid-ge2uvauf><div class="panel-head" data-astro-cid-ge2uvauf><span class="tag" data-astro-cid-ge2uvauf>OUTPUT VS. TEAM</span><span class="live" data-astro-cid-ge2uvauf><span class="dot" data-astro-cid-ge2uvauf></span>LIVE</span></div><div class="panel-body" data-astro-cid-ge2uvauf><span class="legend out" data-astro-cid-ge2uvauf><i data-astro-cid-ge2uvauf></i>Output</span><span class="legend team" data-astro-cid-ge2uvauf><i data-astro-cid-ge2uvauf></i>Team</span><span class="mult" data-mult data-astro-cid-ge2uvauf>×1.0</span><canvas class="chart" data-output-chart data-astro-cid-ge2uvauf></canvas></div></div></div></header><script>
+  <header data-astro-cid-ge2uvauf><div class="shell grid" data-astro-cid-ge2uvauf><div class="copy" data-astro-cid-ge2uvauf><h1 data-astro-cid-ge2uvauf>AI automations that make your team measurably more productive —<br data-astro-cid-ge2uvauf>without hiring.</h1><p data-astro-cid-ge2uvauf>I help ambitious teams identify where AI can have the biggest impact, then build and run the automations that deliver it. More output, same team, no extra headcount.</p><div class="cta" data-astro-cid-ge2uvauf><a class="btn btn-primary" href="https://outlook.office.com/bookwithme/user/3d92a463b02643aeb260408442cec7e8@scalentic.com/meetingtype/-MGOWcehIkyZ7QUDXWYurA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener" data-astro-cid-ge2uvauf>Book a call</a><a class="btn btn-ghost" href="#automate" data-astro-cid-ge2uvauf>See what we automate</a></div></div><div class="hero-chart" data-astro-cid-ge2uvauf><canvas data-output-chart data-astro-cid-ge2uvauf></canvas></div></div></header><script>
   const ease = (x) => {
     x = Math.max(0, Math.min(1, x));
     return x * x * (3 - 2 * x);
   };
+  const OUT = '#f4f3ee';
+  const TEAM = '#8a887f';
 
   function initOutputChart(canvas) {
     if (canvas.dataset.chartInit) return;
@@ -12,7 +14,6 @@
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    const multEl = canvas.parentElement?.querySelector('[data-mult]');
     let w = 0;
     let h = 0;
     let lastDp = 0;
@@ -29,13 +30,13 @@
 
     function frame(dp) {
       if (w <= 0 || h <= 0) return;
-      const padT = 46;
-      const padB = 30;
-      const x0 = 4;
-      const x1 = w - 4;
+      const padT = 44;
+      const padB = 40;
+      const x0 = 8;
+      const x1 = w - 48;
       const base = h - padB;
-      const climb = base - padT;
       const span = x1 - x0;
+      const climb = base - padT;
       const xmax = x0 + span * dp;
       ctx.clearRect(0, 0, w, h);
 
@@ -49,10 +50,10 @@
       ctx.beginPath();
       for (let x = x0; x <= xmax; x += 3) {
         const xn = (x - x0) / span;
-        const y = base - 8 - 6 * xn;
+        const y = base - 7 - 6 * xn;
         x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = '#8a887f';
+      ctx.strokeStyle = TEAM;
       ctx.lineWidth = 1.6;
       ctx.stroke();
 
@@ -60,20 +61,40 @@
       ctx.beginPath();
       for (let x = x0; x <= xmax; x += 3) {
         const xn = (x - x0) / span;
-        const y = base - 8 - climb * 0.92 * Math.pow(xn, 2);
+        const y = base - 7 - climb * 0.9 * Math.pow(xn, 2);
         ey = y;
         x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = '#f4f3ee';
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = OUT;
+      ctx.lineWidth = 2.4;
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.arc(xmax, ey, 3.5, 0, Math.PI * 2);
-      ctx.fillStyle = '#f4f3ee';
+      ctx.arc(xmax, ey, 4, 0, Math.PI * 2);
+      ctx.fillStyle = OUT;
       ctx.fill();
 
-      if (multEl) multEl.textContent = '×' + (1 + 7 * dp).toFixed(1);
+      ctx.font = "500 13px 'Hanken Grotesk', sans-serif";
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillStyle = TEAM;
+      ctx.fillText('same team', x0, base + 24);
+
+      const a = ease((dp - 0.5) / 0.32);
+      if (a > 0) {
+        ctx.globalAlpha = a;
+        ctx.strokeStyle = 'rgba(244,243,238,0.5)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(xmax, ey);
+        ctx.lineTo(xmax - 48, ey - 32);
+        ctx.stroke();
+        ctx.font = "500 17px 'Literata', serif";
+        ctx.fillStyle = OUT;
+        ctx.textAlign = 'right';
+        ctx.fillText('8× output', xmax - 8, ey - 38);
+        ctx.globalAlpha = 1;
+      }
     }
 
     let start = null;
@@ -101,11 +122,6 @@
       fit();
       frame(lastDp);
     }).observe(canvas);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      delete canvas.dataset.chartInit;
-    };
   }
 
   function bootCharts() {
