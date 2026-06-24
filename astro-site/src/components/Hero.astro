@@ -31,24 +31,14 @@ const { hero } = Astro.props;
 
     <div class="panel">
       <div class="panel-head">
-        <span class="tag">WHAT WE AUTOMATE</span>
+        <span class="tag">OUTPUT VS. TEAM</span>
         <span class="live"><span class="dot"></span>LIVE</span>
       </div>
       <div class="panel-body">
-        <div class="target"></div>
-        <div class="scan"></div>
-        {
-          hero.panelRows.map((r, i) => (
-            <div class="row" style={`--row-delay:${i * 2}s`}>
-              <span class="num">{r.n}</span>
-              <div class="label-wrap">
-                <span class="label">{r.label}</span>
-                <span class="progress" aria-hidden="true"></span>
-              </div>
-              <span class="status">{r.status}</span>
-            </div>
-          ))
-        }
+        <span class="legend out"><i></i>Output</span>
+        <span class="legend team"><i></i>Team</span>
+        <span class="mult" data-mult>×1.0</span>
+        <canvas class="chart" data-output-chart></canvas>
       </div>
     </div>
   </div>
@@ -159,95 +149,49 @@ const { hero } = Astro.props;
   }
   .panel-body {
     position: relative;
-    padding: 8px 0;
+    height: 300px;
   }
-  .target {
-    position: absolute;
-    left: 8px;
-    right: 8px;
-    top: 8px;
-    height: 72px;
-    border: 1px solid rgba(255, 255, 255, 0.42);
-    border-radius: 11px;
-    background: rgba(255, 255, 255, 0.05);
-    animation: scTargetSlide 8s cubic-bezier(0.7, 0, 0.2, 1) infinite;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .scan {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 8px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-    animation: scScan 8s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .row {
-    --row-delay: 0s;
-    position: relative;
-    z-index: 2;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 0 18px;
-    animation: rowBg 8s cubic-bezier(0.7, 0, 0.2, 1) infinite;
-    animation-delay: var(--row-delay);
-  }
-  .num {
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid;
-    border-radius: 8px;
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 600;
-    animation: scNum 8s cubic-bezier(0.7, 0, 0.2, 1) infinite;
-    animation-delay: var(--row-delay);
-  }
-  .label-wrap {
-    flex: 1;
-    position: relative;
-    min-width: 0;
-    padding-bottom: 3px;
-  }
-  .label {
+  .chart {
     display: block;
-    font-family: var(--serif);
-    font-size: 21px;
-    color: rgba(240, 239, 234, 0.34);
-    animation: scRowGlow 8s cubic-bezier(0.7, 0, 0.2, 1) infinite;
-    animation-delay: var(--row-delay);
-  }
-  .progress {
-    position: absolute;
-    left: 0;
-    bottom: 0;
     width: 100%;
-    height: 1px;
-    background: rgba(244, 243, 238, 0.5);
-    transform-origin: left center;
-    transform: scaleX(0);
-    animation: scProgress 8s linear infinite;
-    animation-delay: var(--row-delay);
-    pointer-events: none;
+    height: 100%;
   }
-  .status {
-    flex-shrink: 0;
+  .legend {
+    position: absolute;
+    left: 18px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.08em;
+    z-index: 2;
+  }
+  .legend i {
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+  .legend.out {
+    top: 16px;
+    color: var(--text-bright);
+  }
+  .legend.team {
+    bottom: 12px;
     color: #8a887f;
-    opacity: 0;
-    animation: scStatus 8s cubic-bezier(0.7, 0, 0.2, 1) infinite;
-    animation-delay: var(--row-delay);
+  }
+  .mult {
+    position: absolute;
+    top: 13px;
+    right: 18px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-bright);
+    font-variant-numeric: tabular-nums;
+    z-index: 2;
   }
 
   @keyframes panelIn {
@@ -279,153 +223,6 @@ const { hero } = Astro.props;
       opacity: 0;
     }
   }
-  @keyframes rowBg {
-    0%,
-    22% {
-      background: transparent;
-    }
-    3%,
-    19% {
-      background: rgba(255, 255, 255, 0.04);
-    }
-    26%,
-    100% {
-      background: transparent;
-    }
-  }
-  @keyframes scTargetSlide {
-    0% {
-      transform: translateY(0);
-    }
-    19% {
-      transform: translateY(0);
-    }
-    25% {
-      transform: translateY(72px);
-    }
-    44% {
-      transform: translateY(72px);
-    }
-    50% {
-      transform: translateY(144px);
-    }
-    69% {
-      transform: translateY(144px);
-    }
-    75% {
-      transform: translateY(216px);
-    }
-    94% {
-      transform: translateY(216px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  @keyframes scScan {
-    0% {
-      transform: translateY(-12px);
-      opacity: 0;
-    }
-    8% {
-      opacity: 0.4;
-    }
-    92% {
-      opacity: 0.4;
-    }
-    100% {
-      transform: translateY(300px);
-      opacity: 0;
-    }
-  }
-  @keyframes scRowGlow {
-    0% {
-      color: rgba(240, 239, 234, 0.34);
-    }
-    3% {
-      color: #f4f3ee;
-    }
-    22% {
-      color: #f4f3ee;
-    }
-    26% {
-      color: rgba(240, 239, 234, 0.34);
-    }
-    100% {
-      color: rgba(240, 239, 234, 0.34);
-    }
-  }
-  @keyframes scNum {
-    0% {
-      background: transparent;
-      color: rgba(240, 239, 234, 0.3);
-      border-color: rgba(255, 255, 255, 0.14);
-    }
-    3% {
-      background: #f4f3ee;
-      color: #0c0c0d;
-      border-color: #f4f3ee;
-    }
-    22% {
-      background: #f4f3ee;
-      color: #0c0c0d;
-      border-color: #f4f3ee;
-    }
-    26% {
-      background: transparent;
-      color: rgba(240, 239, 234, 0.3);
-      border-color: rgba(255, 255, 255, 0.14);
-    }
-    100% {
-      background: transparent;
-      color: rgba(240, 239, 234, 0.3);
-      border-color: rgba(255, 255, 255, 0.14);
-    }
-  }
-  @keyframes scStatus {
-    0% {
-      opacity: 0;
-      transform: translateX(6px);
-    }
-    4% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    22% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    26% {
-      opacity: 0;
-      transform: translateX(6px);
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(6px);
-    }
-  }
-  @keyframes scProgress {
-    0%,
-    2% {
-      transform: scaleX(0);
-      opacity: 0;
-    }
-    4% {
-      opacity: 0.55;
-    }
-    22% {
-      transform: scaleX(1);
-      opacity: 0.55;
-    }
-    26% {
-      transform: scaleX(1);
-      opacity: 0;
-    }
-    100% {
-      transform: scaleX(0);
-      opacity: 0;
-    }
-  }
   @keyframes scDot {
     0%,
     100% {
@@ -441,51 +238,11 @@ const { hero } = Astro.props;
   @media (prefers-reduced-motion: reduce) {
     .panel,
     .tag,
-    .dot,
-    .target,
-    .scan,
-    .row,
-    .num,
-    .label,
-    .progress,
-    .status {
+    .dot {
       animation: none !important;
     }
     .tag::after {
       display: none;
-    }
-    .scan {
-      opacity: 0;
-    }
-    .target {
-      transform: translateY(0);
-    }
-    .row:first-child {
-      background: rgba(255, 255, 255, 0.04);
-    }
-    .row:first-child .num {
-      background: #f4f3ee;
-      color: #0c0c0d;
-      border-color: #f4f3ee;
-    }
-    .row:first-child .label {
-      color: #f4f3ee;
-    }
-    .row:first-child .progress {
-      transform: scaleX(0.62);
-      opacity: 0.55;
-    }
-    .row:first-child .status {
-      opacity: 1;
-      transform: none;
-    }
-    .row:not(:first-child) .label {
-      color: rgba(240, 239, 234, 0.34);
-    }
-    .row:not(:first-child) .num {
-      background: transparent;
-      color: rgba(240, 239, 234, 0.3);
-      border-color: rgba(255, 255, 255, 0.14);
     }
   }
 
@@ -498,3 +255,119 @@ const { hero } = Astro.props;
     }
   }
 </style>
+
+<script is:inline>
+  const ease = (x) => {
+    x = Math.max(0, Math.min(1, x));
+    return x * x * (3 - 2 * x);
+  };
+
+  function initOutputChart(canvas) {
+    if (canvas.dataset.chartInit) return;
+    canvas.dataset.chartInit = '1';
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const multEl = canvas.parentElement?.querySelector('[data-mult]');
+    let w = 0;
+    let h = 0;
+    let lastDp = 0;
+    let rafId = 0;
+
+    function fit() {
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      w = canvas.clientWidth;
+      h = canvas.clientHeight;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function frame(dp) {
+      if (w <= 0 || h <= 0) return;
+      const padT = 46;
+      const padB = 30;
+      const x0 = 4;
+      const x1 = w - 4;
+      const base = h - padB;
+      const climb = base - padT;
+      const span = x1 - x0;
+      const xmax = x0 + span * dp;
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x0, base);
+      ctx.lineTo(x1, base);
+      ctx.stroke();
+
+      ctx.beginPath();
+      for (let x = x0; x <= xmax; x += 3) {
+        const xn = (x - x0) / span;
+        const y = base - 8 - 6 * xn;
+        x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = '#8a887f';
+      ctx.lineWidth = 1.6;
+      ctx.stroke();
+
+      let ey = base;
+      ctx.beginPath();
+      for (let x = x0; x <= xmax; x += 3) {
+        const xn = (x - x0) / span;
+        const y = base - 8 - climb * 0.92 * Math.pow(xn, 2);
+        ey = y;
+        x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = '#f4f3ee';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(xmax, ey, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#f4f3ee';
+      ctx.fill();
+
+      if (multEl) multEl.textContent = '×' + (1 + 7 * dp).toFixed(1);
+    }
+
+    let start = null;
+    function loop(now) {
+      if (start === null) start = now;
+      const p = (((now - start) / 1000) % 5.5) / 5.5;
+      lastDp = ease(Math.min(1, p / 0.8));
+      frame(lastDp);
+      rafId = requestAnimationFrame(loop);
+    }
+
+    function startLoop() {
+      fit();
+      if (w <= 0 || h <= 0) {
+        rafId = requestAnimationFrame(startLoop);
+        return;
+      }
+      start = null;
+      rafId = requestAnimationFrame(loop);
+    }
+
+    startLoop();
+
+    new ResizeObserver(() => {
+      fit();
+      frame(lastDp);
+    }).observe(canvas);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      delete canvas.dataset.chartInit;
+    };
+  }
+
+  function bootCharts() {
+    document.querySelectorAll('[data-output-chart]').forEach(initOutputChart);
+  }
+
+  bootCharts();
+  document.addEventListener('astro:page-load', bootCharts);
+</script>

@@ -13,12 +13,6 @@ const campaign: Campaign = {
     headlineLines: ['Your data,', 'synced quietly.'],
     description:
       'We build and run custom AI for data pipelines — records moved, cleaned, deduplicated, and synced across your stack so your team stops living in spreadsheets.',
-    panelRows: [
-      { n: '01', label: 'Extraction', status: 'pulling' },
-      { n: '02', label: 'Cleaning', status: 'deduping' },
-      { n: '03', label: 'Transformation', status: 'mapping' },
-      { n: '04', label: 'Sync', status: 'pushing' },
-    ],
   },
   automate: {
     headline: 'Data work we take off your plate.',

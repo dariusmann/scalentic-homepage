@@ -1,9 +1,3 @@
-export type HeroPanelRow = {
-  n: string;
-  label: string;
-  status: string;
-};
-
 export type AutomateItem = {
   n: string;
   title: string;
@@ -33,7 +27,6 @@ export type Campaign = {
   hero: {
     headlineLines: readonly string[];
     description: string;
-    panelRows: readonly HeroPanelRow[];
   };
   automate: {
     headline: string;

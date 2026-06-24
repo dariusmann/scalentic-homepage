@@ -15,12 +15,6 @@ const campaign: Campaign = {
     ],
     description:
       'I help ambitious teams identify where AI can have the biggest impact, then build and run the automations that deliver it. More output, same team, no extra headcount.',
-    panelRows: [
-      { n: '01', label: 'Customer support', status: 'resolving' },
-      { n: '02', label: 'Data pipelines', status: 'syncing' },
-      { n: '03', label: 'Lead generation', status: 'scoring' },
-      { n: '04', label: 'Product search', status: 'indexing' },
-    ],
   },
   automate: {
     headline: 'Where automations move the needle.',

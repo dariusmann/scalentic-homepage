@@ -13,12 +13,6 @@ const campaign: Campaign = {
     headlineLines: ['Good leads,', 'followed up quietly.'],
     description:
       'We build and run custom AI for lead generation — prospects found, qualified, and nurtured automatically so your pipeline stays warm without the manual chase.',
-    panelRows: [
-      { n: '01', label: 'Inbound capture', status: 'scoring' },
-      { n: '02', label: 'Qualification', status: 'routing' },
-      { n: '03', label: 'Follow-up', status: 'sending' },
-      { n: '04', label: 'Handoff', status: 'booking' },
-    ],
   },
   automate: {
     headline: 'Pipeline work we take off your plate.',

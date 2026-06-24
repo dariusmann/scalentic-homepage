@@ -13,12 +13,6 @@ const campaign: Campaign = {
     headlineLines: ['Your support queue,', 'handled quietly.'],
     description:
       'We build and run custom AI for customer support — tickets triaged, answered, and resolved in your voice, with humans in the loop only when it matters.',
-    panelRows: [
-      { n: '01', label: 'Ticket triage', status: 'routing' },
-      { n: '02', label: 'First response', status: 'drafting' },
-      { n: '03', label: 'Resolution', status: 'resolving' },
-      { n: '04', label: 'Escalation', status: 'handoff' },
-    ],
   },
   automate: {
     headline: 'Support work we take off your team’s plate.',

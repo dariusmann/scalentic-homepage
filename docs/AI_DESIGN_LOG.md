@@ -31,6 +31,15 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-06-24 — hero panel "Output vs. Team" chart
+- Replaced automate row list in `Hero.astro` with a canvas chart: near-flat Team
+  line vs. climbing Output line, ×1.0→×8.0 multiplier, legends. 5.5s loop with
+  smoothstep easing. Tag text is now `OUTPUT VS. TEAM`. Removed `hero.panelRows`
+  from campaign types/data. Chart script uses `is:inline` (see below) and waits
+  for canvas layout before starting rAF. CSS shimmer/dot still honor
+  `prefers-reduced-motion`; canvas draw-in always loops (OS reduce-motion was
+  freezing the chart at ×8.0 for many viewers).
+
 ### 2026-06-24 — hero panel "agent at work" animation
 - Upgraded `Hero.astro` automate panel: 8s shared timeline with focus-sweep
   highlight (`cubic-bezier(.7,0,.2,1)`), faint vertical scan line, per-row chip
