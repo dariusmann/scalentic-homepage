@@ -1,15 +1,22 @@
 :root {
-  --bg: #0c0c0d;
-  --bg-alt: #131315;
-  --text: #f0efea;
-  --text-bright: #f4f3ee;
-  --text-soft: #e4e2db;
-  --muted: #a4a39d;
-  --muted-2: #7c7a74;
-  --muted-3: #6e6c66;
-  --faint: #5e5c57;
-  --line: rgba(255, 255, 255, 0.09);
-  --line-strong: rgba(255, 255, 255, 0.13);
+  --bg: #080d0e;
+  --bg-alt: #0d1416;
+  --text: #e8eded;
+  --text-bright: #f1f5f4;
+  --text-soft: #d5dddc;
+  --muted: #93a3a1;
+  --muted-2: #6c7c7a;
+  --muted-3: #5e6e6c;
+  --faint: #506160;
+  --line: rgba(190, 255, 245, 0.09);
+  --line-strong: rgba(190, 255, 245, 0.14);
+
+  /* Signal Teal — trust (blue) x growth (green). AAA on --bg at 10:1,
+     so it is safe on small text, not just buttons. */
+  --accent: #1ad1ad;
+  --accent-on: #04100d;
+  --accent-line: rgba(26, 209, 173, 0.4);
+  --accent-wash: rgba(26, 209, 173, 0.08);
   --serif: 'Literata', Georgia, 'Times New Roman', serif;
   --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: ui-monospace, 'SF Mono', Menlo, monospace;
@@ -33,8 +40,8 @@ body {
 }
 
 ::selection {
-  background: var(--text);
-  color: var(--bg);
+  background: var(--accent);
+  color: var(--accent-on);
 }
 
 a {
@@ -54,18 +61,18 @@ a {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.2em;
-  color: var(--muted-2);
+  color: var(--accent);
   text-transform: uppercase;
   margin-bottom: 18px;
 }
 
 .navlink {
-  color: #cac8c1;
+  color: #bdc7c6;
   font-weight: 600;
   transition: color 0.18s ease;
 }
 .navlink:hover {
-  color: #ffffff;
+  color: var(--accent);
 }
 
 .btn {
@@ -80,15 +87,20 @@ a {
   transform: translateY(-1px);
 }
 .btn-primary {
-  color: var(--bg);
-  background: var(--text);
+  color: var(--accent-on);
+  background: var(--accent);
   padding: 14px 27px;
 }
 .btn-ghost {
   color: var(--text);
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(190, 255, 245, 0.22);
   padding: 14px 27px;
+  transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--accent-line);
+  color: var(--accent);
 }
 
 /* FAQ disclosure */

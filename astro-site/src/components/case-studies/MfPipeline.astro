@@ -291,12 +291,12 @@ for (let i = 0; i < nodes.length; i += ROW_SIZE) {
   .node:hover,
   .node:focus-visible,
   .node.is-open {
-    border-color: rgba(255, 255, 255, 0.35);
-    background: #1a1a1d;
+    border-color: var(--accent-line);
+    background: #142023;
     outline: none;
   }
   .node:focus-visible {
-    box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px rgba(240, 239, 234, 0.45);
+    box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent-line);
   }
   .node-label {
     font-size: 14px;

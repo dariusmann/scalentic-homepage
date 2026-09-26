@@ -70,7 +70,7 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(12, 12, 13, 0.86);
+    background: rgba(8, 13, 14, 0.86);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
@@ -98,7 +98,7 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
     white-space: nowrap;
   }
   .navlink.current {
-    color: #ffffff;
+    color: var(--accent);
   }
   .actions {
     display: flex;
@@ -113,7 +113,7 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
     padding: 3px;
     border: 1px solid var(--line);
     border-radius: 9px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(190, 255, 245, 0.03);
   }
   .lang-btn {
     font-size: 12px;
@@ -127,8 +127,8 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
     color: var(--text);
   }
   .lang-btn.active {
-    color: var(--bg);
-    background: var(--text);
+    color: var(--accent);
+    background: var(--accent-wash);
   }
   .book {
     font-size: 15px;

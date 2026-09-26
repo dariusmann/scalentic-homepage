@@ -31,6 +31,31 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-09-26 — Signal Teal palette (branch `design/signal-teal`)
+- First accent colour the site has ever had. Base shifted from neutral warm black
+  to cool anthracite (`--bg #080d0e`, `--bg-alt #0d1416`), text from warm cream to
+  cool off-white (`--text #e8eded`). Accent `--accent #1ad1ad` (10.02:1 on `--bg`,
+  AAA — safe on small text, not only on buttons).
+- New tokens in `global.css`: `--accent`, `--accent-on`, `--accent-line`,
+  `--accent-wash`. Use these instead of new hex values.
+- Accent is deliberately sparse (~10% rule): primary buttons, `.eyebrow`,
+  Automate/HowItWorks step numbers, nav current + hover, lang pill, hero chart
+  "output" curve, callout left borders, focus rings.
+- **Gotcha:** the hero chart is canvas-drawn, so its colours are JS constants in
+  `Hero.astro` (`OUT` / `TEAM` + two `rgba()` strokes), not CSS vars. Any future
+  palette change must touch those by hand.
+- **Gotcha:** white overlay borders were hardcoded as `rgba(255,255,255,X)` in 12
+  components. They are now `rgba(190,255,245,X)` so they stay cool over the new
+  base. Grep for both forms when re-theming.
+- Rejected alternatives (mocked up first): cobalt-on-cream light inversion,
+  copper on warm ink, acid lime, steel blue. Rationale — teal is the only hue
+  carrying both "trust" (blue) and "growth/money" (green), which is the brief.
+- Mockup harness lives in `.palette-preview/` (gitignored): standalone HTML with
+  all five directions, live contrast maths, `?only=N` to isolate one. Render with
+  headless Chrome `--screenshot`. Note the canvas chart does not animate in
+  headless, so the hero graph always renders at frame 0.
+- Not published. Run `npm run publish` from repo root when adopting.
+
 ### 2026-09-26 — DE/EN i18n
 - Astro `i18n`: defaultLocale `de` (no prefix), English under `/en/`.
 - Copy: `src/i18n/` (ui, about, home) + case study `content/.../medizinfuchs/{de,en}.ts`.
