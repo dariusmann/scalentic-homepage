@@ -31,6 +31,31 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-09-26 — Signal Teal **light** (branch `design/signal-teal-light`)
+- Same design, inverted: `--bg #f7f9f8`, `--text #101b1a`. Built on top of
+  `design/signal-teal`.
+- **The accent had to be re-derived, not reused.** `#1ad1ad` is only 1.84:1 on a
+  light background. Light accent is `#05604e` (7.12:1 text, 7.53:1 white-on-it).
+  `--accent-vivid #0a8a71` exists for graphics (hero curve) and must never be
+  used for text — it is 4.06:1.
+- Themes are now switchable: `:root` holds light, `html[data-theme='dark']`
+  holds the old dark values. Set the attribute in `Layout.astro` to flip
+  everything, including the canvas chart. Verified working.
+- **This removes two earlier gotchas.** All `rgba(255,255,255,X)` /
+  `rgba(190,255,245,X)` overlays are now `rgba(var(--fg-rgb), X)` — one token
+  drives every hairline. And `Hero.astro` no longer hardcodes chart colours; it
+  reads `--accent-vivid` / `--accent` / `--muted-2` / `--fg-rgb` off the canvas
+  via `getComputedStyle` (`readPalette()`). Canvas cannot resolve `var()`
+  itself, so this indirection is required — do not inline hex there again.
+- New tokens: `--bg-blur` (sticky nav), `--surface-hover` (pipeline nodes),
+  `--sunken` (recessed panels), `--navlink`, `--fg-rgb`, `--accent-vivid`.
+- Contrast audited across the whole scale. `--muted-3` had to go to `#606e6c`
+  to clear AA (it carries footer links and labels). `--faint` stays at 3.44:1 —
+  decorative dots and arrows only, never text.
+- The medizinfuchs logo plate needs an explicit white background plus a
+  `--line` border on light, otherwise it vanishes into the page.
+- Not published.
+
 ### 2026-09-26 — Signal Teal palette (branch `design/signal-teal`)
 - First accent colour the site has ever had. Base shifted from neutral warm black
   to cool anthracite (`--bg #080d0e`, `--bg-alt #0d1416`), text from warm cream to

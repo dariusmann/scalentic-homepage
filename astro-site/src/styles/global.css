@@ -1,6 +1,44 @@
+/* Signal Teal, light. --fg-rgb drives every hairline and overlay, so the whole
+   theme flips from this block alone. Set data-theme="dark" on <html> for the
+   dark variant below. */
 :root {
+  --bg: #f7f9f8;
+  --bg-alt: #eef2f1;
+  --bg-blur: rgba(247, 249, 248, 0.86);
+  --surface-hover: #e6ebe9;
+  --sunken: rgba(6, 26, 24, 0.04);
+  --text: #101b1a;
+  --text-bright: #061110;
+  --text-soft: #2b3a38;
+  --muted: #4f5d5b;
+  --muted-2: #5d6b69;
+  --muted-3: #606e6c;
+  --faint: #7b8987; /* decorative dots and arrows only, never text */
+  --navlink: #3d4a48;
+  --fg-rgb: 6, 26, 24;
+  --line: rgba(var(--fg-rgb), 0.12);
+  --line-strong: rgba(var(--fg-rgb), 0.18);
+
+  /* Deep teal: 7.12:1 on --bg, 7.53:1 with white on it. The dark theme's
+     #1ad1ad is only 1.84:1 here, hence the separate value. --accent-vivid is
+     for graphics only, never text. */
+  --accent: #05604e;
+  --accent-vivid: #0a8a71;
+  --accent-on: #ffffff;
+  --accent-line: rgba(5, 96, 78, 0.45);
+  --accent-wash: rgba(5, 96, 78, 0.07);
+
+  --serif: 'Literata', Georgia, 'Times New Roman', serif;
+  --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+html[data-theme='dark'] {
   --bg: #080d0e;
   --bg-alt: #0d1416;
+  --bg-blur: rgba(8, 13, 14, 0.86);
+  --surface-hover: #142023;
+  --sunken: rgba(0, 0, 0, 0.22);
   --text: #e8eded;
   --text-bright: #f1f5f4;
   --text-soft: #d5dddc;
@@ -8,18 +46,16 @@
   --muted-2: #6c7c7a;
   --muted-3: #5e6e6c;
   --faint: #506160;
-  --line: rgba(190, 255, 245, 0.09);
-  --line-strong: rgba(190, 255, 245, 0.14);
+  --navlink: #bdc7c6;
+  --fg-rgb: 190, 255, 245;
+  --line: rgba(var(--fg-rgb), 0.09);
+  --line-strong: rgba(var(--fg-rgb), 0.14);
 
-  /* Signal Teal — trust (blue) x growth (green). AAA on --bg at 10:1,
-     so it is safe on small text, not just buttons. */
   --accent: #1ad1ad;
+  --accent-vivid: #1ad1ad;
   --accent-on: #04100d;
   --accent-line: rgba(26, 209, 173, 0.4);
   --accent-wash: rgba(26, 209, 173, 0.08);
-  --serif: 'Literata', Georgia, 'Times New Roman', serif;
-  --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
 }
 
 * {
@@ -67,7 +103,7 @@ a {
 }
 
 .navlink {
-  color: #bdc7c6;
+  color: var(--navlink);
   font-weight: 600;
   transition: color 0.18s ease;
 }
@@ -94,7 +130,7 @@ a {
 .btn-ghost {
   color: var(--text);
   background: transparent;
-  border: 1px solid rgba(190, 255, 245, 0.22);
+  border: 1px solid rgba(var(--fg-rgb), 0.22);
   padding: 14px 27px;
   transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }

@@ -70,7 +70,7 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(8, 13, 14, 0.86);
+    background: var(--bg-blur);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
@@ -113,7 +113,7 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
     padding: 3px;
     border: 1px solid var(--line);
     border-radius: 9px;
-    background: rgba(190, 255, 245, 0.03);
+    background: rgba(var(--fg-rgb), 0.03);
   }
   .lang-btn {
     font-size: 12px;

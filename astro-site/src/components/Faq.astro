@@ -48,10 +48,10 @@ const { faq, eyebrow, headline } = Astro.props;
     color: var(--text-bright);
   }
   details {
-    border-top: 1px solid rgba(190, 255, 245, 0.16);
+    border-top: 1px solid rgba(var(--fg-rgb), 0.16);
   }
   details:last-of-type {
-    border-bottom: 1px solid rgba(190, 255, 245, 0.16);
+    border-bottom: 1px solid rgba(var(--fg-rgb), 0.16);
   }
   summary {
     display: flex;

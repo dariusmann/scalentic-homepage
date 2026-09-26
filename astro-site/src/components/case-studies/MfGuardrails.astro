@@ -22,7 +22,7 @@ const { guardrails } = Astro.props;
             d="M44 4 L80 18 V48 C80 72 62 92 44 100 C26 92 8 72 8 48 V18 Z"
             stroke="currentColor"
             stroke-width="1.5"
-            fill="rgba(190,255,245,0.04)"
+            class="shield-body"
           ></path>
           <path d="M30 52 L40 62 L60 38" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
@@ -96,6 +96,9 @@ const { guardrails } = Astro.props;
   .shield {
     color: var(--muted-2);
     flex-shrink: 0;
+  }
+  .shield-body {
+    fill: rgba(var(--fg-rgb), 0.04);
   }
   .cols {
     display: grid;
