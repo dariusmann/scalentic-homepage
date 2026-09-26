@@ -19,14 +19,14 @@
   --line: rgba(var(--fg-rgb), 0.12);
   --line-strong: rgba(var(--fg-rgb), 0.18);
 
-  /* Deep teal: 7.12:1 on --bg, 7.53:1 with white on it. The dark theme's
-     #1ad1ad is only 1.84:1 here, hence the separate value. --accent-vivid is
-     for graphics only, never text. */
-  --accent: #05604e;
-  --accent-vivid: #0a8a71;
+  /* Forest green: 8.62:1 on --bg, 8.07:1 on --bg-alt, 9.11:1 with white on it.
+     The dark theme's #1ad1ad is only 1.84:1 here, hence the separate value.
+     --accent-vivid is for graphics only, never text (3.53:1). */
+  --accent: #14532d;
+  --accent-vivid: #35964f;
   --accent-on: #ffffff;
-  --accent-line: rgba(5, 96, 78, 0.45);
-  --accent-wash: rgba(5, 96, 78, 0.07);
+  --accent-line: rgba(20, 83, 45, 0.45);
+  --accent-wash: rgba(20, 83, 45, 0.07);
 
   --serif: 'Literata', Georgia, 'Times New Roman', serif;
   --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;

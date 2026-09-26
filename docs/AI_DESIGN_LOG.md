@@ -35,9 +35,14 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 - Same design, inverted: `--bg #f7f9f8`, `--text #101b1a`. Built on top of
   `design/signal-teal`.
 - **The accent had to be re-derived, not reused.** `#1ad1ad` is only 1.84:1 on a
-  light background. Light accent is `#05604e` (7.12:1 text, 7.53:1 white-on-it).
-  `--accent-vivid #0a8a71` exists for graphics (hero curve) and must never be
-  used for text — it is 4.06:1.
+  light background. Light accent is forest green `#14532d` (8.62:1 on `--bg`,
+  8.07:1 on `--bg-alt`, 9.11:1 white-on-it). `--accent-vivid #35964f` exists for
+  graphics (hero curve, chart bar) and must never be used for text — 3.53:1,
+  which clears the 3:1 non-text rule only.
+- Green drops the blue "trust" half of the teal rationale and keeps the
+  growth/money half — a deliberate trade, not an oversight. Pine `#0b5138`
+  (hue 159°) is the middle ground if that ever needs revisiting; sage
+  `#3a5a40` was rejected as too low-chroma for a CTA.
 - Themes are now switchable: `:root` holds light, `html[data-theme='dark']`
   holds the old dark values. Set the attribute in `Layout.astro` to flip
   everything, including the canvas chart. Verified working.
