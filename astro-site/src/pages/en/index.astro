@@ -1,16 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import Automate from '../components/Automate.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import About from '../components/About.astro';
-import Faq from '../components/Faq.astro';
-import FinalCta from '../components/FinalCta.astro';
-import Footer from '../components/Footer.astro';
-import { getHome, localizedUrl, ui, type Locale } from '../i18n';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import Automate from '../../components/Automate.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import About from '../../components/About.astro';
+import Faq from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import Footer from '../../components/Footer.astro';
+import { getHome, localizedUrl, ui, type Locale } from '../../i18n';
 
-const locale: Locale = 'de';
+const locale: Locale = 'en';
 const campaign = getHome(locale);
 const copy = ui[locale];
 const title = campaign.meta.title ?? copy.meta.homeTitle;
@@ -20,7 +20,7 @@ const title = campaign.meta.title ?? copy.meta.homeTitle;
   title={title}
   description={campaign.meta.description}
   lang={locale}
-  canonicalPath="/"
+  canonicalPath="/en/"
   alternateDe="/"
   alternateEn={localizedUrl('en')}
 >

@@ -3,9 +3,10 @@ import type { Campaign } from '../campaigns';
 
 interface Props {
   automate: Campaign['automate'];
+  eyebrow: string;
 }
 
-const { automate } = Astro.props;
+const { automate, eyebrow } = Astro.props;
 
 const footNote = automate.footNote;
 const footNoteQ = footNote?.indexOf('?') ?? -1;
@@ -17,7 +18,7 @@ const footNoteBody = footNoteQ >= 0 ? footNote!.slice(footNoteQ + 1).trim() : fo
   <div class="shell inner">
     <div class="head">
       <div>
-        <span class="eyebrow">What I automate</span>
+        <span class="eyebrow">{eyebrow}</span>
         <h2>{automate.headline}</h2>
       </div>
       <p class="head-note">{automate.headNote}</p>

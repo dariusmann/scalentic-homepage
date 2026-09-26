@@ -3,15 +3,17 @@ import type { Campaign } from '../campaigns';
 
 interface Props {
   faq: Campaign['faq'];
+  eyebrow: string;
+  headline: string;
 }
 
-const { faq } = Astro.props;
+const { faq, eyebrow, headline } = Astro.props;
 ---
 
 <section id="faq">
   <div class="inner">
-    <span class="eyebrow">FAQ</span>
-    <h2>Questions, answered.</h2>
+    <span class="eyebrow">{eyebrow}</span>
+    <h2>{headline}</h2>
     {
       faq.faqs.map((f) => (
         <details>

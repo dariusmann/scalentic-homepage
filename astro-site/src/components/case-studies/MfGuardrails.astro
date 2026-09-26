@@ -1,0 +1,158 @@
+---
+import type { MedizinfuchsContent } from '../../content/case-studies/medizinfuchs';
+
+interface Props {
+  guardrails: MedizinfuchsContent['guardrails'];
+}
+
+const { guardrails } = Astro.props;
+---
+
+<section class="guardrails" aria-labelledby="guardrails-heading">
+  <div class="shell inner">
+    <div class="head">
+      <div>
+        <span class="eyebrow">{guardrails.eyebrow}</span>
+        <h2 id="guardrails-heading">{guardrails.headline}</h2>
+        <p class="lead">{guardrails.lead}</p>
+      </div>
+      <div class="shield" aria-hidden="true">
+        <svg width="88" height="104" viewBox="0 0 88 104" fill="none">
+          <path
+            d="M44 4 L80 18 V48 C80 72 62 92 44 100 C26 92 8 72 8 48 V18 Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+            fill="rgba(240,239,234,0.04)"
+          ></path>
+          <path d="M30 52 L40 62 L60 38" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="col allow">
+        <h3>{guardrails.allowed.title}</h3>
+        <ul>
+          {
+            guardrails.allowed.items.map((item) => (
+              <li>
+                <span class="mark" aria-hidden="true">✓</span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="col deny">
+        <h3>{guardrails.forbidden.title}</h3>
+        <ul>
+          {
+            guardrails.forbidden.items.map((item) => (
+              <li>
+                <span class="mark" aria-hidden="true">✕</span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .guardrails {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-alt);
+  }
+  .inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: flex-start;
+    margin-bottom: 48px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text-bright);
+    max-width: 18ch;
+  }
+  .lead {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 34rem;
+    margin-top: 16px;
+  }
+  .shield {
+    color: var(--muted-2);
+    flex-shrink: 0;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .col {
+    padding: 28px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .col h3 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin-bottom: 20px;
+  }
+  .col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .col li {
+    display: flex;
+    gap: 12px;
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--text-soft);
+  }
+  .mark {
+    flex-shrink: 0;
+    width: 1.2em;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--sans);
+    margin-top: 3px;
+  }
+  .allow .mark {
+    color: var(--text-bright);
+  }
+  .deny .mark {
+    color: var(--muted-3);
+  }
+  .deny {
+    border-style: dashed;
+  }
+  @media (max-width: 760px) {
+    .cols {
+      grid-template-columns: 1fr;
+    }
+    .shield {
+      display: none;
+    }
+  }
+</style>

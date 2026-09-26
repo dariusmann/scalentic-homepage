@@ -18,4 +18,7 @@ export const NAV_LINKS = [
   { href: '#how', label: 'How it works' },
   { href: '#about', label: 'About' },
   { href: '#faq', label: 'FAQ' },
+  { href: '/case-studies/medizinfuchs', label: 'Case study' },
 ] as const;
+
+// Prefer `ui` from `src/i18n` for localized chrome. NAV_LINKS kept for legacy refs.

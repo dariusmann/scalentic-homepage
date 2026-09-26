@@ -1,0 +1,426 @@
+---
+import type { MedizinfuchsContent } from '../../content/case-studies/medizinfuchs';
+
+interface Props {
+  pipeline: MedizinfuchsContent['pipeline'];
+}
+
+const { pipeline } = Astro.props;
+const nodes = pipeline.nodes;
+const reject = pipeline.reject;
+
+const ROW_SIZE = 4;
+const rows: { nodes: (typeof nodes)[number][]; dir: 'ltr' | 'rtl'; startIndex: number }[] = [];
+
+for (let i = 0; i < nodes.length; i += ROW_SIZE) {
+  const rowIndex = Math.floor(i / ROW_SIZE);
+  rows.push({
+    nodes: nodes.slice(i, i + ROW_SIZE),
+    dir: rowIndex % 2 === 0 ? 'ltr' : 'rtl',
+    startIndex: i,
+  });
+}
+---
+
+<section class="pipeline" aria-labelledby="pipeline-heading">
+  <div class="shell inner">
+    <span class="eyebrow">{pipeline.eyebrow}</span>
+    <h2 id="pipeline-heading">{pipeline.headline}</h2>
+    <p class="lead">{pipeline.lead}</p>
+
+    <div class="snake" data-pipeline role="list" aria-label="Pipeline-Schritte">
+      {
+        rows.map((row, rowIndex) => (
+          <>
+            {rowIndex > 0 && (
+              <div
+                class:list={['snake-curve', row.dir === 'rtl' ? 'from-end' : 'from-start']}
+                aria-hidden="true"
+                style={`--i: ${row.startIndex}`}
+              >
+                <svg viewBox="0 0 48 40" preserveAspectRatio="none">
+                  <path
+                    d={row.dir === 'rtl' ? 'M40 0 V12 Q40 28 24 28 H8' : 'M8 0 V12 Q8 28 24 28 H40'}
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+            )}
+            <div class:list={['snake-row', row.dir]} data-cols={row.nodes.length}>
+              {row.nodes.map((node, j) => {
+                const i = row.startIndex + j;
+                return (
+                  <>
+                    <div class="step-wrap" role="listitem">
+                      <button
+                        type="button"
+                        class="node"
+                        data-node={node.id}
+                        aria-expanded="false"
+                        aria-controls={`pipe-detail-${node.id}`}
+                        style={`--i: ${i}`}
+                      >
+                        <span class="node-label">{node.label}</span>
+                        <span class="node-short">{node.short}</span>
+                      </button>
+                      <div class="detail" id={`pipe-detail-${node.id}`} role="region" hidden>
+                        <p>{node.detail}</p>
+                      </div>
+                      {node.id === 'gate' && (
+                        <div class="reject-branch" style={`--i: ${i}`}>
+                          <span class="branch-line" aria-hidden="true"></span>
+                          <button
+                            type="button"
+                            class="node reject"
+                            data-node={reject.id}
+                            aria-expanded="false"
+                            aria-controls={`pipe-detail-${reject.id}`}
+                          >
+                            <span class="node-label">{reject.label}</span>
+                            <span class="node-short">Abgelehnt</span>
+                          </button>
+                          <div class="detail" id={`pipe-detail-${reject.id}`} role="region" hidden>
+                            <p>{reject.detail}</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    {j < row.nodes.length - 1 && (
+                      <div class="connector" aria-hidden="true" style={`--i: ${i}`}></div>
+                    )}
+                  </>
+                );
+              })}
+            </div>
+          </>
+        ))
+      }
+    </div>
+
+    <p class="hint">{pipeline.hint}</p>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var root = document.querySelector('[data-pipeline]');
+    if (!root) return;
+
+    var nodes = root.querySelectorAll('.node');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function closeAll(except) {
+      nodes.forEach(function (btn) {
+        if (btn === except) return;
+        btn.setAttribute('aria-expanded', 'false');
+        var id = btn.getAttribute('aria-controls');
+        var panel = id && document.getElementById(id);
+        if (panel) panel.hidden = true;
+        btn.classList.remove('is-open');
+      });
+    }
+
+    nodes.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        closeAll(btn);
+        var id = btn.getAttribute('aria-controls');
+        var panel = id && document.getElementById(id);
+        if (!panel) return;
+        if (open) {
+          btn.setAttribute('aria-expanded', 'false');
+          panel.hidden = true;
+          btn.classList.remove('is-open');
+        } else {
+          btn.setAttribute('aria-expanded', 'true');
+          panel.hidden = false;
+          btn.classList.add('is-open');
+        }
+      });
+
+      btn.addEventListener('mouseenter', function () {
+        if (window.matchMedia('(hover: hover)').matches) {
+          closeAll(btn);
+          var id = btn.getAttribute('aria-controls');
+          var panel = id && document.getElementById(id);
+          if (!panel) return;
+          btn.setAttribute('aria-expanded', 'true');
+          panel.hidden = false;
+          btn.classList.add('is-open');
+        }
+      });
+    });
+
+    if (reduce) {
+      root.classList.add('is-visible');
+      return;
+    }
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            root.classList.add('is-visible');
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(root);
+  })();
+</script>
+
+<style>
+  .pipeline {
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text-bright);
+    max-width: 20ch;
+  }
+  .lead {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 36rem;
+    margin-top: 16px;
+    margin-bottom: 48px;
+  }
+
+  .snake {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 920px;
+  }
+  .snake-row {
+    display: grid;
+    grid-template-columns: 1fr 20px 1fr 20px 1fr 20px 1fr;
+    align-items: start;
+  }
+  .snake-row[data-cols='3'] {
+    grid-template-columns: 1fr 20px 1fr 20px 1fr;
+  }
+  .snake-row[data-cols='2'] {
+    grid-template-columns: 1fr 20px 1fr;
+  }
+  .snake-row[data-cols='1'] {
+    grid-template-columns: 1fr;
+  }
+  .snake-row.rtl {
+    direction: rtl;
+  }
+  .snake-row.rtl .step-wrap,
+  .snake-row.rtl .node,
+  .snake-row.rtl .detail,
+  .snake-row.rtl .reject-branch {
+    direction: ltr;
+  }
+
+  .snake-curve {
+    display: flex;
+    height: 40px;
+    color: var(--muted-3);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    transition-delay: calc(var(--i, 0) * 60ms);
+  }
+  .snake.is-visible .snake-curve {
+    opacity: 1;
+  }
+  .snake-curve.from-end {
+    justify-content: flex-end;
+    padding-right: 10%;
+  }
+  .snake-curve.from-start {
+    justify-content: flex-start;
+    padding-left: 10%;
+  }
+  .snake-curve svg {
+    width: 48px;
+    height: 40px;
+    display: block;
+  }
+
+  .step-wrap {
+    position: relative;
+    min-width: 0;
+  }
+  .node {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+    text-align: left;
+    padding: 16px 16px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    background: var(--bg-alt);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s ease,
+      border-color 0.18s ease,
+      background 0.18s ease;
+    transition-delay: calc(var(--i, 0) * 60ms);
+  }
+  .snake.is-visible .node,
+  .snake.is-visible .connector {
+    opacity: 1;
+    transform: none;
+  }
+  .node:hover,
+  .node:focus-visible,
+  .node.is-open {
+    border-color: rgba(255, 255, 255, 0.35);
+    background: #1a1a1d;
+    outline: none;
+  }
+  .node:focus-visible {
+    box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px rgba(240, 239, 234, 0.45);
+  }
+  .node-label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-bright);
+  }
+  .node-short {
+    font-size: 12px;
+    color: var(--muted-2);
+  }
+  .node.reject {
+    border-style: dashed;
+  }
+  .connector {
+    width: 100%;
+    height: 2px;
+    margin-top: 30px;
+    background: var(--line-strong);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    transition-delay: calc(var(--i, 0) * 60ms + 30ms);
+  }
+  .detail {
+    margin-top: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    width: min(300px, 70vw);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 5;
+  }
+  .snake-row.rtl .step-wrap:first-child .detail,
+  .snake-row.ltr .step-wrap:last-child .detail {
+    left: auto;
+    right: 0;
+  }
+  .detail p {
+    font-family: var(--serif);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+  .reject-branch {
+    margin-top: 8px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    transition-delay: calc(var(--i, 0) * 60ms + 80ms);
+  }
+  .snake.is-visible .reject-branch {
+    opacity: 1;
+    transform: none;
+  }
+  .branch-line {
+    display: block;
+    width: 1px;
+    height: 14px;
+    margin-left: 18px;
+    background: var(--line-strong);
+  }
+  .hint {
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--muted-3);
+  }
+
+  @media (max-width: 900px) {
+    .snake-row,
+    .snake-row[data-cols='3'],
+    .snake-row[data-cols='2'],
+    .snake-row[data-cols='1'] {
+      grid-template-columns: 1fr;
+      direction: ltr;
+    }
+    .snake-curve {
+      display: none;
+    }
+    .connector {
+      width: 2px;
+      height: 16px;
+      margin: 0 0 0 22px;
+    }
+    /* Vertical stack: insert a thin rail between rows */
+    .snake-row + .snake-row {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: none;
+      position: relative;
+    }
+    .snake-row + .snake-row::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 22px;
+      width: 2px;
+      height: 16px;
+      background: var(--line-strong);
+    }
+    .detail {
+      position: static;
+      width: 100%;
+    }
+    .reject-branch {
+      margin-left: 20px;
+      border-left: 1px dashed var(--line-strong);
+      padding-left: 14px;
+    }
+    .branch-line {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .node,
+    .connector,
+    .reject-branch,
+    .snake-curve {
+      opacity: 1;
+      transform: none;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+  }
+</style>

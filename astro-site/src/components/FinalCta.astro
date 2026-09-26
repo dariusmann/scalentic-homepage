@@ -5,9 +5,10 @@ import LinkedInButton from './LinkedInButton.astro';
 
 interface Props {
   finalCta: Campaign['finalCta'];
+  bookLabel: string;
 }
 
-const { finalCta } = Astro.props;
+const { finalCta, bookLabel } = Astro.props;
 ---
 
 <section id="contact">
@@ -24,7 +25,7 @@ const { finalCta } = Astro.props;
     </h2>
     <p>{finalCta.subtext}</p>
     <div class="cta">
-      <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">Book a call</a>
+      <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">{bookLabel}</a>
       <a class="btn btn-ghost" href={`mailto:${EMAIL}`}>{EMAIL}</a>
       <LinkedInButton />
     </div>

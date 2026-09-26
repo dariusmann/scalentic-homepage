@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 
 // Source of truth for the Scalentic homepage. Build output is copied to the
@@ -6,7 +5,16 @@ import { defineConfig } from 'astro/config';
 //
 // base: '/' — correct for scalentic.com (custom domain).
 // For the github.io project URL only, use base: '/scalentic-homepage/'.
+//
+// i18n: German is default at `/`; English lives under `/en/`.
 export default defineConfig({
   site: 'https://scalentic.com',
   outDir: './dist',
+  i18n: {
+    defaultLocale: 'de',
+    locales: ['de', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });

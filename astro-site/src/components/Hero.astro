@@ -4,9 +4,12 @@ import type { Campaign } from '../campaigns';
 
 interface Props {
   hero: Campaign['hero'];
+  bookLabel: string;
+  secondaryLabel: string;
+  secondaryHref?: string;
 }
 
-const { hero } = Astro.props;
+const { hero, bookLabel, secondaryLabel, secondaryHref = '#automate' } = Astro.props;
 ---
 
 <header>
@@ -24,8 +27,8 @@ const { hero } = Astro.props;
       </h1>
       <p>{hero.description}</p>
       <div class="cta">
-        <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">Book a call</a>
-        <a class="btn btn-ghost" href="#automate">See what we automate</a>
+        <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">{bookLabel}</a>
+        <a class="btn btn-ghost" href={secondaryHref}>{secondaryLabel}</a>
       </div>
     </div>
 

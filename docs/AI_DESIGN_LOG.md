@@ -31,6 +31,47 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-09-26 — DE/EN i18n
+- Astro `i18n`: defaultLocale `de` (no prefix), English under `/en/`.
+- Copy: `src/i18n/` (ui, about, home) + case study `content/.../medizinfuchs/{de,en}.ts`.
+- Nav language switcher (DE|EN) keeps the current path. hreflang + og:locale:alternate
+  in Layout. Homepage is German at `/`; English at `/en/`.
+- **Gotcha:** multilingual homepage uses `i18n/home.ts`, not `campaigns/ACTIVE_CAMPAIGN_ID`.
+  Campaign A/B files remain EN-only reference.
+
+### 2026-09-26 — Remove conflict-resolution section
+- Dropped “Widersprüche sichtbar lösen” section + `MfConflict.astro`.
+
+### 2026-09-26 — Drop OCR / Vision-LLMs claim
+- Extraction step and model routing no longer mention OCR or Vision-LLMs.
+
+### 2026-09-26 — Pipeline snake layout
+- Pipeline is a 4+4 snake (LTR → curve → RTL) so labels like “Log / Review”
+  and “Veröffentlicht” aren’t crushed in one horizontal row. Mobile stacks
+  vertically.
+
+### 2026-09-26 — Medizinfuchs facts corrected
+- Removed Zeitraum from hero. Sources are 5–12 (not fixed at 5). Dropped
+  Langfuse, LangChain, Docling from copy/tech; OCR described without Docling.
+
+### 2026-09-26 — Medizinfuchs logo on case study
+- Downloaded official SVG from `medizinfuchs.de/images/medizinfuchs-logo_de.svg`
+  → `astro-site/public/assets/case-studies/medizinfuchs-logo.svg`. Shown in hero
+  “Kunde” on a light panel (logo has dark wordmark; unreadable on dark bg otherwise).
+  Links to https://www.medizinfuchs.de/.
+
+### 2026-09-25 — Medizinfuchs case study
+- New German case study at `/case-studies/medizinfuchs` (product-description
+  pipeline only). Copy lives in `src/content/case-studies/medizinfuchs.ts`.
+- Sections: hero KPI, before/after, interactive pipeline, source merge,
+  conflict toggle, YMYL guardrails, output mockup, models/Langfuse, tech,
+  result CTA. Visuals via SVG/CSS + inline JS (no new libs).
+- Layout gained optional `lang`, canonical, OG/Twitter meta. Nav wordmark →
+  `/`; hash links resolve to `/#…` off-home; “Case study” in nav + footer.
+- **Gotcha:** conflict toggle data is a JSON `<script type="application/json">`
+  (not `define:vars` + `is:inline` — those don’t combine). Pipeline hover
+  details only auto-open when `(hover: hover)` so touch stays tap-to-toggle.
+
 ### 2026-06-24 — automate footnote callout
 - `#automate` footer note is now an `<aside class="foot-callout">`: `bg-alt` panel,
   left accent border, larger serif type; lead sentence before `?` uses brighter

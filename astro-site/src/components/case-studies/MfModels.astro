@@ -1,0 +1,130 @@
+---
+import type { MedizinfuchsContent } from '../../content/case-studies/medizinfuchs';
+
+interface Props {
+  models: MedizinfuchsContent['models'];
+}
+
+const { models } = Astro.props;
+---
+
+<section class="models" aria-labelledby="models-heading">
+  <div class="shell inner">
+    <span class="eyebrow">{models.eyebrow}</span>
+    <h2 id="models-heading">{models.headline}</h2>
+    <p class="lead">{models.lead}</p>
+
+    <div class="badges" aria-label="Modelle">
+      {models.badges.map((b) => <span class="badge">{b}</span>)}
+    </div>
+
+    <div class="routing" role="img" aria-label="Aufgaben werden dem passenden Modell zugeordnet">
+      <h3 class="sub">{models.routingLabel}</h3>
+      <ul>
+        {
+          models.routing.map((r) => (
+            <li>
+              <span class="task">{r.task}</span>
+              <span class="arrow" aria-hidden="true">→</span>
+              <span class="model">{r.model}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .models {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-alt);
+  }
+  .inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text-bright);
+    max-width: 22ch;
+  }
+  .lead {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 36rem;
+    margin-top: 16px;
+    margin-bottom: 28px;
+  }
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .badge {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+  }
+  .sub {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-3);
+    margin-bottom: 16px;
+  }
+  .routing {
+    max-width: 560px;
+  }
+  .routing ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .routing li {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+  }
+  .task {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--text-soft);
+  }
+  .arrow {
+    color: var(--muted-3);
+  }
+  .model {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    font-family: var(--mono);
+  }
+  @media (max-width: 760px) {
+    .routing li {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .arrow {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import { BOOKING_URL, EMAIL } from '../../consts';
+import type { MedizinfuchsContent } from '../../content/case-studies/medizinfuchs';
+import LinkedInButton from '../LinkedInButton.astro';
+
+interface Props {
+  result: MedizinfuchsContent['result'];
+}
+
+const { result } = Astro.props;
+---
+
+<section class="result" id="contact" aria-labelledby="result-heading">
+  <div class="shell inner">
+    <span class="eyebrow">{result.eyebrow}</span>
+    <h2 id="result-heading">{result.headline}</h2>
+
+    <aside class="kpi" aria-label="Kennzahl">
+      <p class="kpi-value">{result.kpi.value}</p>
+      <p class="kpi-label">{result.kpi.label}</p>
+    </aside>
+
+    <p class="body">{result.body}</p>
+
+    <div class="cta">
+      <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">{result.ctaPrimary}</a>
+      <a class="btn btn-ghost" href={`mailto:${EMAIL}`}>{result.ctaSecondary}</a>
+      <LinkedInButton />
+    </div>
+  </div>
+</section>
+
+<style>
+  .result {
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: 108px;
+    padding-bottom: 108px;
+    text-align: center;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.018em;
+    color: var(--text-bright);
+    max-width: 16ch;
+    margin: 0 auto;
+    text-wrap: balance;
+  }
+  .kpi {
+    margin: 40px auto 0;
+    max-width: 360px;
+    padding: 28px 32px;
+    border: 1px solid var(--line-strong);
+    border-left: 3px solid rgba(255, 255, 255, 0.35);
+    border-radius: 16px;
+    background: var(--bg-alt);
+    text-align: left;
+  }
+  .kpi-value {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 5vw, 56px);
+    line-height: 1;
+    color: var(--text-bright);
+  }
+  .kpi-label {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  .body {
+    font-family: var(--serif);
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 34rem;
+    margin: 28px auto 0;
+  }
+  .cta {
+    display: flex;
+    gap: 13px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+</style>

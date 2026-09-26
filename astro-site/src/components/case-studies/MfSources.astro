@@ -1,0 +1,173 @@
+---
+import type { MedizinfuchsContent } from '../../content/case-studies/medizinfuchs';
+
+interface Props {
+  sources: MedizinfuchsContent['sources'];
+}
+
+const { sources } = Astro.props;
+---
+
+<section class="sources" aria-labelledby="sources-heading">
+  <div class="shell inner">
+    <span class="eyebrow">{sources.eyebrow}</span>
+    <h2 id="sources-heading">{sources.headline}</h2>
+    <p class="lead">{sources.lead}</p>
+
+    <div class="diagram" role="img" aria-label={sources.diagramAria}>
+      <div class="partners">
+        {
+          sources.partners.map((name) => (
+            <div class:list={['partner', { more: name.startsWith('…') }]}>
+              <span>{name}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="funnel" aria-hidden="true">
+        <svg class="lines" viewBox="0 0 100 80" preserveAspectRatio="none">
+          <path d="M10 0 C10 30, 50 40, 50 80" fill="none" stroke="currentColor" stroke-width="0.6"></path>
+          <path d="M30 0 C30 28, 50 42, 50 80" fill="none" stroke="currentColor" stroke-width="0.6"></path>
+          <path d="M50 0 L50 80" fill="none" stroke="currentColor" stroke-width="0.6"></path>
+          <path d="M70 0 C70 28, 50 42, 50 80" fill="none" stroke="currentColor" stroke-width="0.6"></path>
+          <path d="M90 0 C90 30, 50 40, 50 80" fill="none" stroke="currentColor" stroke-width="0.6"></path>
+        </svg>
+      </div>
+
+      <ol class="stages">
+        {sources.stages.map((s) => <li>{s.label}</li>)}
+      </ol>
+
+      <div class="output">
+        <span class="out-label">{sources.outputLabel}</span>
+        <div class="bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sources {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-alt);
+  }
+  .inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text-bright);
+    max-width: 22ch;
+  }
+  .lead {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 36rem;
+    margin-top: 16px;
+    margin-bottom: 48px;
+  }
+  .diagram {
+    display: grid;
+    gap: 8px;
+    max-width: 720px;
+  }
+  .partners {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .partner {
+    padding: 14px 8px;
+    text-align: center;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-soft);
+    line-height: 1.3;
+  }
+  .partner.more {
+    border-style: dashed;
+    color: var(--muted-2);
+  }
+  .funnel {
+    height: 56px;
+    color: var(--muted-3);
+  }
+  .lines {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .stages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    justify-content: center;
+    margin: 8px 0 20px;
+  }
+  .stages li {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+  .stages li:not(:last-child)::after {
+    content: '→';
+    margin-left: 10px;
+    color: var(--faint);
+    font-weight: 400;
+  }
+  .output {
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    background: var(--bg);
+    padding: 22px 24px;
+  }
+  .out-label {
+    display: block;
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--text-bright);
+    margin-bottom: 16px;
+  }
+  .bars {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .bars span {
+    display: block;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .bars span:nth-child(1) { width: 92%; }
+  .bars span:nth-child(2) { width: 74%; }
+  .bars span:nth-child(3) { width: 84%; }
+  .bars span:nth-child(4) { width: 58%; }
+  @media (max-width: 640px) {
+    .partners {
+      grid-template-columns: 1fr 1fr;
+    }
+    .stages li:not(:last-child)::after {
+      content: none;
+    }
+  }
+</style>

@@ -1,6 +1,20 @@
 ---
 import { SITE, BOOKING_URL, EMAIL } from '../consts';
+import {
+  localizedUrl,
+  resolveLocale,
+  sectionUrl,
+  ui,
+  type Locale,
+} from '../i18n';
+import { CASE_STUDY_PATH } from '../content/case-studies/medizinfuchs';
 
+interface Props {
+  locale?: Locale;
+}
+
+const locale = resolveLocale(Astro.props.locale ?? Astro.currentLocale);
+const copy = ui[locale];
 const year = new Date().getFullYear();
 ---
 
@@ -8,27 +22,28 @@ const year = new Date().getFullYear();
   <div class="shell top">
     <div>
       <span class="wordmark">{SITE.wordmark}</span>
-      <p class="blurb">AI automations that make your team more productive — without hiring. Consulting, build, and ongoing support, all with one person.</p>
+      <p class="blurb">{copy.footer.blurb}</p>
     </div>
     <div class="col">
-      <span class="col-title">Company</span>
-      <a class="navlink" href="#about">About</a>
+      <span class="col-title">{copy.footer.company}</span>
+      <a class="navlink" href={sectionUrl(locale, 'about')}>{copy.footer.about}</a>
+      <a class="navlink" href={localizedUrl(locale, CASE_STUDY_PATH)}>{copy.footer.caseStudy}</a>
     </div>
     <div class="col">
-      <span class="col-title">Automate</span>
-      <a class="navlink" href="#automate">Operations</a>
-      <a class="navlink" href="#automate">Sales</a>
-      <a class="navlink" href="#automate">Marketing</a>
+      <span class="col-title">{copy.footer.automate}</span>
+      <a class="navlink" href={sectionUrl(locale, 'automate')}>{copy.footer.operations}</a>
+      <a class="navlink" href={sectionUrl(locale, 'automate')}>{copy.footer.sales}</a>
+      <a class="navlink" href={sectionUrl(locale, 'automate')}>{copy.footer.marketing}</a>
     </div>
     <div class="col">
-      <span class="col-title">Contact</span>
+      <span class="col-title">{copy.footer.contact}</span>
       <a class="navlink" href={`mailto:${EMAIL}`}>{EMAIL}</a>
-      <a class="navlink" href={BOOKING_URL} target="_blank" rel="noopener">Book a call</a>
+      <a class="navlink" href={BOOKING_URL} target="_blank" rel="noopener">{copy.bookCall}</a>
     </div>
   </div>
   <div class="shell bottom">
-    <span>© {year} Scalentic. All rights reserved.</span>
-    <span>Built quietly by Scalentic.</span>
+    <span>© {year} Scalentic. {copy.footer.rights}</span>
+    <span>{copy.footer.built}</span>
   </div>
 </footer>
 
