@@ -1,0 +1,122 @@
+---
+import { BOOKING_URL, EMAIL } from '../../consts';
+import type { MedizinfuchsContent } from '../../content/case-studies/medizinfuchs';
+import LinkedInButton from '../LinkedInButton.astro';
+
+interface Props {
+  transfer: MedizinfuchsContent['transfer'];
+}
+
+const { transfer } = Astro.props;
+---
+
+<section class="transfer" id="contact" aria-labelledby="transfer-heading">
+  <div class="shell inner">
+    <span class="eyebrow">{transfer.eyebrow}</span>
+    <h2 id="transfer-heading">{transfer.headline}</h2>
+    <p class="lead">{transfer.lead}</p>
+
+    <ul class="signals">
+      {
+        transfer.signals.map((signal) => (
+          <li>
+            <h3>{signal.title}</h3>
+            <p>{signal.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="cta-lead">{transfer.ctaLead}</p>
+    <div class="cta">
+      <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">{transfer.ctaPrimary}</a>
+      <a class="btn btn-ghost" href={`mailto:${EMAIL}`}>{transfer.ctaSecondary}</a>
+      <LinkedInButton />
+    </div>
+  </div>
+</section>
+
+<style>
+  .transfer {
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: 100px;
+    padding-bottom: 108px;
+    text-align: center;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -0.018em;
+    color: var(--text-bright);
+    max-width: 24ch;
+    margin: 0 auto;
+    text-wrap: balance;
+  }
+  .lead {
+    font-family: var(--serif);
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 40rem;
+    margin: 20px auto 0;
+  }
+  .signals {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 52px;
+    text-align: left;
+  }
+  .signals li {
+    padding: 26px 26px 30px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg-alt);
+  }
+  .signals h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--text-bright);
+    margin-bottom: 12px;
+  }
+  .signals p {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .cta-lead {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    max-width: 34rem;
+    margin: 52px auto 0;
+  }
+  .cta {
+    display: flex;
+    gap: 13px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 900px) {
+    .signals {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+  @media (max-width: 760px) {
+    .inner {
+      padding-top: 76px;
+      padding-bottom: 80px;
+    }
+  }
+</style>

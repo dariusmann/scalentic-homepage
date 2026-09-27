@@ -33,6 +33,35 @@ export const medizinfuchsDe = {
     },
   },
 
+  glance: {
+    eyebrow: 'Überblick',
+    items: [
+      {
+        label: 'Ausgangslage',
+        value: 'Produktbeschreibungen entstanden Produkt für Produkt von Hand.',
+      },
+      {
+        label: 'Ziel',
+        value: 'Automatisiert erzeugen — ohne die Sorgfaltspflicht bei Gesundheitscontent aufzuweichen.',
+      },
+      {
+        label: 'Lösung',
+        value: 'Multi-Source-Pipeline mit festem Schema, Guardrails und Quality Gate vor Veröffentlichung.',
+      },
+      {
+        label: 'Ergebnis',
+        value: '~70 % weniger manuelle Content-Erstellung, unvollständige Produkte gehen nicht live.',
+      },
+    ],
+    meta: [
+      { label: 'Rolle', value: 'Konzept, Pipeline-Entwicklung, Qualitätslogik' },
+      { label: 'Umfang', value: 'Produktbeschreibungen, end-to-end' },
+    ],
+    stackLabel: 'Stack',
+    stack: ['Python', 'n8n', 'GPT', 'Gemini', 'Claude'],
+    stackNote: 'n8n für frühes Prototyping neben der Python-Kernpipeline.',
+  },
+
   challenge: {
     eyebrow: 'Ausgangslage',
     headline: 'Manuell ging nicht mehr skalierbar',
@@ -53,6 +82,32 @@ export const medizinfuchsDe = {
         'Nur freigegebene Beschreibungen veröffentlichen',
       ],
     },
+  },
+
+  goal: {
+    eyebrow: 'Ziel',
+    headline: 'Was „fertig“ heißen musste',
+    lead: 'Automatisierung war nur dann eine Option, wenn sie die Sorgfaltspflicht nicht verwässert. Zielbild und Grenzen standen deshalb vor der ersten Zeile Code fest.',
+    criteria: {
+      title: 'Erfolgskriterien',
+      items: [
+        'Beschreibungen ohne manuelle Recherche je Produkt',
+        'Mehrere Partnerquellen zu einem konsistenten Text verdichten',
+        'Feste Abschnittsstruktur statt frei formulierter Prosa',
+        'Über den ganzen Katalog skalierbar, nicht nur im Einzelfall',
+      ],
+    },
+    constraints: {
+      title: 'Nicht verhandelbar',
+      items: [
+        'Keine Fakten, die in keiner Quelle stehen',
+        'Pflichtangaben vollständig — sonst keine Veröffentlichung',
+        'Widersprüche sichtbar machen, nicht wegmitteln',
+        'Jede Ablehnung nachvollziehbar protokolliert',
+      ],
+    },
+    ctaLead: 'Gleiches Muster bei euch?',
+    ctaLink: 'Kurzes Gespräch buchen',
   },
 
   pipeline: {
@@ -219,13 +274,6 @@ export const medizinfuchsDe = {
     ],
   },
 
-  tech: {
-    eyebrow: 'Technik',
-    headline: 'Stack',
-    badges: ['Python', 'n8n', 'GPT', 'Gemini', 'Claude'],
-    note: 'n8n für frühes Prototyping neben der Python-Kernpipeline.',
-  },
-
   result: {
     eyebrow: 'Ergebnis',
     headline: 'Weniger Handarbeit — gleiche Sorgfaltspflicht',
@@ -233,7 +281,40 @@ export const medizinfuchsDe = {
       value: '~70 %',
       label: 'weniger manuelle Content-Erstellung',
     },
+    stats: [
+      { value: '5–12', label: 'Partnerquellen je Produkt, automatisiert zusammengeführt' },
+      { value: '14', label: 'Abschnitte maximal, in fester Reihenfolge — leere entfallen' },
+    ],
     body: 'Die Pipeline übernimmt Scraping, Extraktion, Synthese und Qualitätskontrolle. Freigabe bleibt regelbasiert — ohne erfundene Fakten.',
+    unchanged: {
+      title: 'Was bewusst gleich geblieben ist',
+      items: [
+        'Ohne vollständige Pflichtangaben geht nichts live',
+        'Keine erfundenen Fakten — nur belegte Quellen',
+        'Abgelehnte Produkte landen mit Grund im Review',
+      ],
+    },
+  },
+
+  transfer: {
+    eyebrow: 'Passt das zu euch?',
+    headline: 'Dasselbe Muster, andere Branche',
+    lead: 'Die Pipeline ist für Apothekenprodukte gebaut — das Muster nicht. Es greift überall dort, wo Menschen Daten aus vielen Quellen von Hand zu Texten verdichten.',
+    signals: [
+      {
+        title: 'Viele Quellen, ein Datensatz',
+        body: 'Eure Leute öffnen pro Datensatz mehrere Lieferanten-, Hersteller- oder Partnerquellen und gleichen sie im Kopf ab.',
+      },
+      {
+        title: 'Inhalte mit Haftungsrisiko',
+        body: 'Pflichtangaben, Rechtstexte oder Sicherheitshinweise müssen stimmen — „meistens korrekt“ reicht nicht.',
+      },
+      {
+        title: 'Durchsatz hängt an Köpfen',
+        body: 'Mehr Produkte, Märkte oder Sprachen bedeuten bisher schlicht mehr Personen, die dasselbe tun.',
+      },
+    ],
+    ctaLead: 'Wenn zwei davon zutreffen, lohnt sich ein Gespräch. 20 Minuten reichen, um zu klären, ob das Muster trägt.',
     ctaPrimary: 'Gespräch buchen',
     ctaSecondary: 'E-Mail schreiben',
   },

@@ -4,14 +4,16 @@ import Layout from '../../../layouts/Layout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import MfHero from '../../../components/case-studies/MfHero.astro';
+import MfGlance from '../../../components/case-studies/MfGlance.astro';
 import MfChallenge from '../../../components/case-studies/MfChallenge.astro';
+import MfGoal from '../../../components/case-studies/MfGoal.astro';
 import MfPipeline from '../../../components/case-studies/MfPipeline.astro';
 import MfSources from '../../../components/case-studies/MfSources.astro';
 import MfGuardrails from '../../../components/case-studies/MfGuardrails.astro';
-import MfOutput from '../../../components/case-studies/MfOutput.astro';
 import MfModels from '../../../components/case-studies/MfModels.astro';
-import MfTech from '../../../components/case-studies/MfTech.astro';
+import MfOutput from '../../../components/case-studies/MfOutput.astro';
 import MfResult from '../../../components/case-studies/MfResult.astro';
+import MfTransfer from '../../../components/case-studies/MfTransfer.astro';
 import { localizedUrl, type Locale } from '../../../i18n';
 
 const locale: Locale = 'en';
@@ -31,14 +33,16 @@ const cs = getMedizinfuchs(locale);
   <Nav locale={locale} current="case-study" />
   <main>
     <MfHero hero={cs.hero} />
+    <MfGlance glance={cs.glance} />
     <MfChallenge challenge={cs.challenge} />
+    <MfGoal goal={cs.goal} />
     <MfPipeline pipeline={cs.pipeline} />
     <MfSources sources={cs.sources} />
     <MfGuardrails guardrails={cs.guardrails} />
-    <MfOutput output={cs.output} />
     <MfModels models={cs.models} />
-    <MfTech tech={cs.tech} />
+    <MfOutput output={cs.output} />
     <MfResult result={cs.result} />
+    <MfTransfer transfer={cs.transfer} />
   </main>
   <Footer locale={locale} />
 </Layout>

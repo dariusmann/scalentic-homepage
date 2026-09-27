@@ -1,7 +1,5 @@
 ---
-import { BOOKING_URL, EMAIL } from '../../consts';
 import type { MedizinfuchsContent } from '../../content/case-studies/medizinfuchs';
-import LinkedInButton from '../LinkedInButton.astro';
 
 interface Props {
   result: MedizinfuchsContent['result'];
@@ -10,22 +8,34 @@ interface Props {
 const { result } = Astro.props;
 ---
 
-<section class="result" id="contact" aria-labelledby="result-heading">
+<section class="result" aria-labelledby="result-heading">
   <div class="shell inner">
     <span class="eyebrow">{result.eyebrow}</span>
     <h2 id="result-heading">{result.headline}</h2>
-
-    <aside class="kpi" aria-label="Kennzahl">
-      <p class="kpi-value">{result.kpi.value}</p>
-      <p class="kpi-label">{result.kpi.label}</p>
-    </aside>
-
     <p class="body">{result.body}</p>
 
-    <div class="cta">
-      <a class="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noopener">{result.ctaPrimary}</a>
-      <a class="btn btn-ghost" href={`mailto:${EMAIL}`}>{result.ctaSecondary}</a>
-      <LinkedInButton />
+    <div class="metrics">
+      <div class="kpi">
+        <p class="kpi-value">{result.kpi.value}</p>
+        <p class="kpi-label">{result.kpi.label}</p>
+      </div>
+      <dl class="stats">
+        {
+          result.stats.map((stat) => (
+            <div>
+              <dt>{stat.value}</dt>
+              <dd>{stat.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="unchanged">
+      <h3>{result.unchanged.title}</h3>
+      <ul>
+        {result.unchanged.items.map((item) => <li>{item}</li>)}
+      </ul>
     </div>
   </div>
 </section>
@@ -33,60 +43,134 @@ const { result } = Astro.props;
 <style>
   .result {
     border-bottom: 1px solid var(--line);
+    background: var(--bg-alt);
   }
   .inner {
-    padding-top: 108px;
-    padding-bottom: 108px;
-    text-align: center;
+    padding-top: 96px;
+    padding-bottom: 96px;
   }
   h2 {
     font-family: var(--serif);
     font-weight: 500;
-    font-size: clamp(32px, 4vw, 52px);
-    line-height: 1.15;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.12;
     letter-spacing: -0.018em;
     color: var(--text-bright);
-    max-width: 28ch;
-    margin: 0 auto;
-    text-wrap: balance;
+    max-width: 20ch;
+  }
+  .body {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 38rem;
+    margin-top: 16px;
+  }
+  .metrics {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 48px;
   }
   .kpi {
-    margin: 40px auto 0;
-    max-width: 360px;
-    padding: 28px 32px;
+    padding: 32px;
     border: 1px solid var(--line-strong);
     border-left: 3px solid var(--accent-line);
     border-radius: 16px;
-    background: var(--bg-alt);
-    text-align: left;
+    background: var(--bg);
   }
   .kpi-value {
     font-family: var(--serif);
     font-weight: 500;
-    font-size: clamp(40px, 5vw, 56px);
+    font-size: clamp(44px, 5.4vw, 64px);
     line-height: 1;
+    letter-spacing: -0.03em;
     color: var(--text-bright);
   }
   .kpi-label {
     font-family: var(--serif);
     font-size: 17px;
+    line-height: 1.45;
     color: var(--muted);
-    margin-top: 10px;
+    margin-top: 12px;
   }
-  .body {
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .stats > div {
+    padding: 32px 26px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--bg);
+  }
+  .stats dt {
     font-family: var(--serif);
-    font-size: clamp(17px, 1.4vw, 20px);
-    line-height: 1.6;
-    color: var(--muted);
-    max-width: 34rem;
-    margin: 28px auto 0;
+    font-weight: 500;
+    font-size: clamp(30px, 3.4vw, 40px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--text-bright);
   }
-  .cta {
-    display: flex;
-    gap: 13px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 36px;
-    flex-wrap: wrap;
+  .stats dd {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+  .unchanged {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .unchanged h3 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin-bottom: 22px;
+  }
+  .unchanged ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .unchanged li {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--text-soft);
+    padding-left: 26px;
+    position: relative;
+  }
+  .unchanged li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.42em;
+    width: 11px;
+    height: 6px;
+    border-left: 1.8px solid var(--accent);
+    border-bottom: 1.8px solid var(--accent);
+    transform: rotate(-45deg);
+  }
+  @media (max-width: 900px) {
+    .metrics {
+      grid-template-columns: 1fr;
+    }
+    .unchanged ul {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+  @media (max-width: 560px) {
+    .stats {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

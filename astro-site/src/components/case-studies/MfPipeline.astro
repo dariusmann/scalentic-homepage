@@ -38,15 +38,7 @@ for (let i = 0; i < nodes.length; i += ROW_SIZE) {
                 aria-hidden="true"
                 style={`--i: ${row.startIndex}`}
               >
-                <svg viewBox="0 0 48 40" preserveAspectRatio="none">
-                  <path
-                    d={row.dir === 'rtl' ? 'M40 0 V12 Q40 28 24 28 H8' : 'M8 0 V12 Q8 28 24 28 H40'}
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                </svg>
+                <span class="rail"></span>
               </div>
             )}
             <div class:list={['snake-row', row.dir]} data-cols={row.nodes.length}>
@@ -231,10 +223,13 @@ for (let i = 0; i < nodes.length; i += ROW_SIZE) {
     direction: ltr;
   }
 
+  /* Vertical rail between rows. The snake reverses direction, so the last node
+     of one row and the first node of the next share a grid column — the rail
+     must sit in that column, not at a percentage inset. */
   .snake-curve {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 20px 1fr 20px 1fr 20px 1fr;
     height: 40px;
-    color: var(--muted-3);
     opacity: 0;
     transition: opacity 0.45s ease;
     transition-delay: calc(var(--i, 0) * 60ms);
@@ -242,18 +237,18 @@ for (let i = 0; i < nodes.length; i += ROW_SIZE) {
   .snake.is-visible .snake-curve {
     opacity: 1;
   }
-  .snake-curve.from-end {
-    justify-content: flex-end;
-    padding-right: 10%;
-  }
-  .snake-curve.from-start {
-    justify-content: flex-start;
-    padding-left: 10%;
-  }
-  .snake-curve svg {
-    width: 48px;
-    height: 40px;
+  .snake-curve .rail {
     display: block;
+    width: 2px;
+    height: 100%;
+    justify-self: center;
+    background: var(--line-strong);
+  }
+  .snake-curve.from-end .rail {
+    grid-column: 7;
+  }
+  .snake-curve.from-start .rail {
+    grid-column: 1;
   }
 
   .step-wrap {

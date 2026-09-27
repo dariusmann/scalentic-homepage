@@ -1,0 +1,153 @@
+---
+import { BOOKING_URL } from '../../consts';
+import type { MedizinfuchsContent } from '../../content/case-studies/medizinfuchs';
+
+interface Props {
+  goal: MedizinfuchsContent['goal'];
+}
+
+const { goal } = Astro.props;
+---
+
+<section class="goal" aria-labelledby="goal-heading">
+  <div class="shell inner">
+    <span class="eyebrow">{goal.eyebrow}</span>
+    <h2 id="goal-heading">{goal.headline}</h2>
+    <p class="lead">{goal.lead}</p>
+
+    <div class="panes">
+      <div class="pane criteria">
+        <h3>{goal.criteria.title}</h3>
+        <ul>
+          {goal.criteria.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="pane constraints">
+        <h3>{goal.constraints.title}</h3>
+        <ul>
+          {goal.constraints.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <p class="soft-cta">
+      <span>{goal.ctaLead}</span>
+      <a href={BOOKING_URL} target="_blank" rel="noopener">{goal.ctaLink}</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .goal {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-alt);
+  }
+  .inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text-bright);
+    max-width: 18ch;
+  }
+  .lead {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 38rem;
+    margin-top: 16px;
+    margin-bottom: 48px;
+  }
+  .panes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .pane {
+    padding: 28px 28px 32px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .constraints {
+    border-color: var(--line-strong);
+    border-left: 3px solid var(--accent-line);
+  }
+  .pane h3 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin-bottom: 20px;
+  }
+  .pane ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .pane li {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--text-soft);
+    padding-left: 26px;
+    position: relative;
+  }
+  .criteria li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.42em;
+    width: 11px;
+    height: 6px;
+    border-left: 1.8px solid var(--accent);
+    border-bottom: 1.8px solid var(--accent);
+    transform: rotate(-45deg);
+  }
+  .constraints li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 12px;
+    height: 1.8px;
+    background: var(--muted-3);
+  }
+  .soft-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: baseline;
+    margin-top: 32px;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--muted);
+  }
+  .soft-cta a {
+    font-weight: 600;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-line);
+    padding-bottom: 1px;
+  }
+  .soft-cta a:hover {
+    border-bottom-color: var(--accent);
+  }
+  @media (max-width: 760px) {
+    .inner {
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+    .panes {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+</style>

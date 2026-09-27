@@ -31,6 +31,42 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-09-27 — Pipeline snake: fix the row-to-row connector
+- The line between “Strukturierte Extraktion” and “Multi-Source-Synthese” did
+  not reach either node. The row-to-row link was a hook-shaped SVG placed by
+  `padding-right: 10%`, so it hung in empty space.
+- **Gotcha:** the snake reverses direction, so the last node of a row and the
+  first node of the next row share a grid column. The link between them is a
+  straight vertical rail, not a curve. `.snake-curve` now repeats the row's
+  `grid-template-columns` and drops the rail into column 7 (`from-end`) or
+  column 1 (`from-start`) — percentage insets do not line up, because the 20px
+  gap columns are fixed while the node columns are `1fr`.
+
+### 2026-09-27 — Case studies get a standard structure (sales-page order)
+- New `docs/CASE_STUDY_STRUCTURE.md` — the canonical section order and the job
+  each section does. **Content-level only**: every case study keeps its own
+  components (`Mf*` for Medizinfuchs). Reuse the narrative, not the markup.
+- Medizinfuchs rebuilt onto it. New sections: `MfGlance` (situation/goal/
+  solution/result + role, scope, stack chips), `MfGoal` (success criteria vs.
+  non-negotiable constraints + soft CTA), `MfTransfer` ("this applies to you
+  if…" + final CTA, now carries `id="contact"`).
+- `MfTech` deleted — the stack lives as chips in `MfGlance`. A standalone
+  tech section costs a full scroll and sells nothing.
+- `MfResult` is metrics-only now (primary KPI + two supporting stats + "what
+  stayed the same"). Its CTA moved to `MfTransfer`.
+- Order: hero → glance → challenge → goal → pipeline → sources → guardrails →
+  models → output → result → transfer. Models moved before output so the page
+  ends on evidence → outcome → ask.
+- **Gotcha:** section backgrounds alternate `--bg` / `--bg-alt`. Moving a
+  section means re-checking its neighbours *and* its inner panels — the
+  before/after panes in `MfChallenge` and the columns in `MfGuardrails` had to
+  flip to `--bg-alt` when their sections went to `--bg`.
+- **Gotcha:** `'~70 %'` in the content files uses U+202F (narrow no-break
+  space), not a normal space. Exact-string edits over that line fail silently
+  unless you reproduce the character.
+- Copy is DE + EN in `content/case-studies/medizinfuchs/{de,en}.ts`.
+  `glance.meta` (role, scope) is an assumption — verify before publishing.
+
 ### 2026-09-27 — Logo mark + favicon
 - Favicon: white-bg green mark → `public/assets/favicon.png` (1024²).
 - Nav brand: transparent green mark → `public/assets/logo-mark.png` beside
