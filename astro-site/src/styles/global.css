@@ -6,9 +6,6 @@
   --bg-blur: rgba(247, 249, 248, 0.86);
   --surface-hover: #e6ebe9;
   --sunken: rgba(6, 26, 24, 0.04);
-  /* Rose tint — warm paper, never ink. 13.58:1 for dark text; 7.03:1 vs green. */
-  --surface-warm: #f2dde1;
-  --surface-warm-line: rgba(163, 79, 99, 0.22);
   --text: #101b1a;
   --text-bright: #061110;
   --text-soft: #2b3a38;
@@ -28,12 +25,6 @@
   --accent-line: rgba(20, 83, 45, 0.45);
   --accent-wash: rgba(20, 83, 45, 0.07);
 
-  /* Optional secondary ink (Mulberry). Prefer --surface-warm over this. */
-  --accent-warm: #a34f63;
-  --accent-warm-on: #ffffff;
-  --accent-warm-line: rgba(163, 79, 99, 0.4);
-  --accent-warm-wash: rgba(163, 79, 99, 0.08);
-
   --serif: 'Literata', Georgia, 'Times New Roman', serif;
   --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: ui-monospace, 'SF Mono', Menlo, monospace;
@@ -45,8 +36,6 @@ html[data-theme='dark'] {
   --bg-blur: rgba(8, 13, 14, 0.86);
   --surface-hover: #142023;
   --sunken: rgba(0, 0, 0, 0.22);
-  --surface-warm: #1a1215;
-  --surface-warm-line: rgba(191, 113, 131, 0.28);
   --text: #e8eded;
   --text-bright: #f1f5f4;
   --text-soft: #d5dddc;
@@ -64,11 +53,6 @@ html[data-theme='dark'] {
   --accent-on: #04100d;
   --accent-line: rgba(26, 209, 173, 0.4);
   --accent-wash: rgba(26, 209, 173, 0.08);
-
-  --accent-warm: #bf7183;
-  --accent-warm-on: #1a1215;
-  --accent-warm-line: rgba(191, 113, 131, 0.4);
-  --accent-warm-wash: rgba(191, 113, 131, 0.1);
 }
 
 * {
@@ -103,11 +87,6 @@ a {
   margin: 0 auto;
   padding-left: 40px;
   padding-right: 40px;
-}
-
-/* Warm rose paper — section/panel background only, never for text or CTAs. */
-.surface-warm {
-  background: var(--surface-warm);
 }
 
 .eyebrow {
