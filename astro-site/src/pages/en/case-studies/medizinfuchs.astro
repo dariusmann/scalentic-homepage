@@ -9,6 +9,7 @@ import MfPipeline from '../../../components/case-studies/MfPipeline.astro';
 import MfSources from '../../../components/case-studies/MfSources.astro';
 import MfGuardrails from '../../../components/case-studies/MfGuardrails.astro';
 import MfOutput from '../../../components/case-studies/MfOutput.astro';
+import MfModels from '../../../components/case-studies/MfModels.astro';
 import MfTech from '../../../components/case-studies/MfTech.astro';
 import MfResult from '../../../components/case-studies/MfResult.astro';
 import { localizedUrl, type Locale } from '../../../i18n';
@@ -35,6 +36,7 @@ const cs = getMedizinfuchs(locale);
     <MfSources sources={cs.sources} />
     <MfGuardrails guardrails={cs.guardrails} />
     <MfOutput output={cs.output} />
+    <MfModels models={cs.models} />
     <MfTech tech={cs.tech} />
     <MfResult result={cs.result} />
   </main>

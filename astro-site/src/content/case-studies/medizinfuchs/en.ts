@@ -198,6 +198,26 @@ export const medizinfuchsEn = {
     },
   },
 
+  models: {
+    eyebrow: 'Models & cost',
+    headline: 'Each task on the cheapest model that still holds quality.',
+    lead: 'No single model for the whole pipeline. Steps are routed separately, models are compared, and expensive capacity is used only where it actually moves the output.',
+    points: [
+      {
+        title: 'Route by task',
+        body: 'Structured extraction mainly needs schema fidelity — cheaper models are enough there. Synthesis and guardrails touch release and liability; stronger models run there.',
+      },
+      {
+        title: 'Compare, don’t guess',
+        body: 'GPT, Gemini, and Claude are measured per task against quality and cost. Routing follows the numbers — which model lands on which step is a result, not a preference.',
+      },
+      {
+        title: 'Pipeline built for cost',
+        body: 'Cheap steps run often and in parallel; expensive ones only when validation or YMYL risk requires them. Run cost stays low without watering down the duty of care.',
+      },
+    ],
+  },
+
   tech: {
     eyebrow: 'Tech',
     headline: 'Stack',

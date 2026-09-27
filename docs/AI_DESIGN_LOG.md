@@ -31,9 +31,13 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-09-27 — Models section: cost story, not “best fit”
+- Restored `MfModels` with three concrete points (route by task, compare
+  models, build pipeline for cost). Removed empty “→ best fit” rows.
+- DE + EN copy rewritten around quality-vs-cost routing.
+
 ### 2026-09-27 — Drop models/routing section from case study
-- Removed `MfModels` (GPT/Gemini/Claude badges + “best fit” routing rows).
-  Vague and duplicated the Tech stack badges. DE + EN content cleaned.
+- Removed the old “best fit” routing UI (later replaced — see above).
 
 ### 2026-09-27 — Forest + rose surface (branch `design/forest-rose`)
 - Consolidated branch: Medizinfuchs case study + DE/EN i18n + light theme +

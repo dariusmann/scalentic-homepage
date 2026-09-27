@@ -199,6 +199,26 @@ export const medizinfuchsDe = {
     },
   },
 
+  models: {
+    eyebrow: 'Modelle & Kosten',
+    headline: 'Jede Aufgabe zum günstigsten Modell, das die Qualität hält.',
+    lead: 'Kein Einheitsmodell für die ganze Pipeline. Schritte werden getrennt geroutet, Modelle verglichen, und teure Kapazität nur dort eingesetzt, wo sie den Output wirklich bewegt.',
+    points: [
+      {
+        title: 'Routing nach Aufgabe',
+        body: 'Strukturierte Extraktion braucht vor allem Schema-Treue — dort reichen günstigere Modelle. Synthese und Guardrails treffen Freigabe und Haftung; dort laufen stärkere Modelle.',
+      },
+      {
+        title: 'Vergleich statt Bauchgefühl',
+        body: 'GPT, Gemini und Claude werden je Task gegen Qualität und Kosten gemessen. Das Routing folgt den Zahlen — welches Modell auf welchem Schritt landet, ist Ergebnis, nicht Vorliebe.',
+      },
+      {
+        title: 'Pipeline kostenoptimiert gebaut',
+        body: 'Billige Schritte laufen oft und parallel; teure nur, wenn Validierung oder YMYL-Risiko es verlangen. So bleibt der Laufpreis niedrig, ohne die Sorgfaltspflicht zu verwässern.',
+      },
+    ],
+  },
+
   tech: {
     eyebrow: 'Technik',
     headline: 'Stack',
