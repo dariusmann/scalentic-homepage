@@ -78,7 +78,7 @@ Fill these in so AI-generated designs use the right copy. Replace the
 | Services / offerings | <!-- TODO --> |
 | About text | <!-- TODO --> |
 | Logo file | `astro-site/public/assets/favicon.png` |
-| Brand colors | <!-- TODO: e.g. primary #000000, accent #000000 --> |
+| Brand colors | Light: bg `#f7f9f8`, accent (forest) `#14532d`, surface-warm (rose) `#f2dde1`. Dark: set `data-theme="dark"` on `<html>` — tokens in `astro-site/src/styles/global.css`. |
 | Font(s) | Hanken Grotesk (current site) — change if desired |
 
 ---

@@ -31,6 +31,20 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-09-27 — Forest + rose surface (branch `design/forest-rose`)
+- Consolidated branch: Medizinfuchs case study + DE/EN i18n + light theme +
+  forest green accent + rose warm surface. Ancestry:
+  `main` → case-study/i18n → signal-teal → signal-teal-light → forest-rose.
+- Rose is **paper, not ink.** Token `--surface-warm: #f2dde1` (13.58:1 for dark
+  text; 7.03:1 vs forest green — survives grayscale and deuteranopia). Applied
+  only to About section + case-study result KPI. Class `.surface-warm` for reuse.
+- Secondary ink tokens reserved but unused: `--accent-warm: #a34f63` (Mulberry).
+  Prefer the surface over the ink; never pair warm + green as allow/deny.
+- Theme switch stays `html[data-theme='dark']`. Dark `--surface-warm` is
+  `#1a1215`. Swap any colour by editing tokens in `global.css` only.
+- `SITE_INFO.md` brand colours filled in.
+- Not published — run `npm run publish` when adopting.
+
 ### 2026-09-26 — Signal Teal **light** (branch `design/signal-teal-light`)
 - Same design, inverted: `--bg #f7f9f8`, `--text #101b1a`. Built on top of
   `design/signal-teal`.

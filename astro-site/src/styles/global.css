@@ -1,12 +1,14 @@
-/* Signal Teal, light. --fg-rgb drives every hairline and overlay, so the whole
-   theme flips from this block alone. Set data-theme="dark" on <html> for the
-   dark variant below. */
+/* Light is default. Flip with html[data-theme="dark"]. Swap colours by
+   editing the tokens below — components consume vars, not hex. */
 :root {
   --bg: #f7f9f8;
   --bg-alt: #eef2f1;
   --bg-blur: rgba(247, 249, 248, 0.86);
   --surface-hover: #e6ebe9;
   --sunken: rgba(6, 26, 24, 0.04);
+  /* Rose tint — warm paper, never ink. 13.58:1 for dark text; 7.03:1 vs green. */
+  --surface-warm: #f2dde1;
+  --surface-warm-line: rgba(163, 79, 99, 0.22);
   --text: #101b1a;
   --text-bright: #061110;
   --text-soft: #2b3a38;
@@ -19,14 +21,18 @@
   --line: rgba(var(--fg-rgb), 0.12);
   --line-strong: rgba(var(--fg-rgb), 0.18);
 
-  /* Forest green: 8.62:1 on --bg, 8.07:1 on --bg-alt, 9.11:1 with white on it.
-     The dark theme's #1ad1ad is only 1.84:1 here, hence the separate value.
-     --accent-vivid is for graphics only, never text (3.53:1). */
+  /* Forest green: ink / CTAs only. --accent-vivid is graphics-only (3.53:1). */
   --accent: #14532d;
   --accent-vivid: #35964f;
   --accent-on: #ffffff;
   --accent-line: rgba(20, 83, 45, 0.45);
   --accent-wash: rgba(20, 83, 45, 0.07);
+
+  /* Optional secondary ink (Mulberry). Prefer --surface-warm over this. */
+  --accent-warm: #a34f63;
+  --accent-warm-on: #ffffff;
+  --accent-warm-line: rgba(163, 79, 99, 0.4);
+  --accent-warm-wash: rgba(163, 79, 99, 0.08);
 
   --serif: 'Literata', Georgia, 'Times New Roman', serif;
   --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -39,6 +45,8 @@ html[data-theme='dark'] {
   --bg-blur: rgba(8, 13, 14, 0.86);
   --surface-hover: #142023;
   --sunken: rgba(0, 0, 0, 0.22);
+  --surface-warm: #1a1215;
+  --surface-warm-line: rgba(191, 113, 131, 0.28);
   --text: #e8eded;
   --text-bright: #f1f5f4;
   --text-soft: #d5dddc;
@@ -56,6 +64,11 @@ html[data-theme='dark'] {
   --accent-on: #04100d;
   --accent-line: rgba(26, 209, 173, 0.4);
   --accent-wash: rgba(26, 209, 173, 0.08);
+
+  --accent-warm: #bf7183;
+  --accent-warm-on: #1a1215;
+  --accent-warm-line: rgba(191, 113, 131, 0.4);
+  --accent-warm-wash: rgba(191, 113, 131, 0.1);
 }
 
 * {
@@ -90,6 +103,11 @@ a {
   margin: 0 auto;
   padding-left: 40px;
   padding-right: 40px;
+}
+
+/* Warm rose paper — section/panel background only, never for text or CTAs. */
+.surface-warm {
+  background: var(--surface-warm);
 }
 
 .eyebrow {
