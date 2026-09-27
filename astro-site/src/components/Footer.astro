@@ -7,7 +7,7 @@ import {
   ui,
   type Locale,
 } from '../i18n';
-import { CASE_STUDY_PATH } from '../content/case-studies/medizinfuchs';
+import { CASE_STUDIES, caseStudyLabel } from '../content/case-studies';
 
 interface Props {
   locale?: Locale;
@@ -16,6 +16,10 @@ interface Props {
 const locale = resolveLocale(Astro.props.locale ?? Astro.currentLocale);
 const copy = ui[locale];
 const year = new Date().getFullYear();
+const caseStudies = CASE_STUDIES.map((cs) => ({
+  href: localizedUrl(locale, cs.path),
+  label: caseStudyLabel(cs, locale),
+}));
 ---
 
 <footer>
@@ -27,7 +31,13 @@ const year = new Date().getFullYear();
     <div class="col">
       <span class="col-title">{copy.footer.company}</span>
       <a class="navlink" href={sectionUrl(locale, 'about')}>{copy.footer.about}</a>
-      <a class="navlink" href={localizedUrl(locale, CASE_STUDY_PATH)}>{copy.footer.caseStudy}</a>
+      {
+        caseStudies.map((cs) => (
+          <a class="navlink" href={cs.href}>
+            {cs.label}
+          </a>
+        ))
+      }
     </div>
     <div class="col">
       <span class="col-title">{copy.footer.automate}</span>

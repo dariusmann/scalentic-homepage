@@ -9,7 +9,7 @@ import {
   ui,
   type Locale,
 } from '../i18n';
-import { CASE_STUDY_PATH } from '../content/case-studies/medizinfuchs';
+import { CASE_STUDIES, caseStudyLabel } from '../content/case-studies';
 
 interface Props {
   locale?: Locale;
@@ -20,16 +20,20 @@ interface Props {
 const locale = resolveLocale(Astro.props.locale ?? Astro.currentLocale);
 const copy = ui[locale];
 const current = Astro.props.current ?? 'home';
+const caseStudyOpen = current === 'case-study';
 
 const home = homeUrl(locale);
-const caseStudyHref = localizedUrl(locale, CASE_STUDY_PATH);
 const links = [
   { href: sectionUrl(locale, 'automate'), label: copy.nav.automate },
   { href: sectionUrl(locale, 'how'), label: copy.nav.how },
   { href: sectionUrl(locale, 'about'), label: copy.nav.about },
   { href: sectionUrl(locale, 'faq'), label: copy.nav.faq },
-  { href: caseStudyHref, label: copy.nav.caseStudy, current: current === 'case-study' },
 ];
+
+const caseStudies = CASE_STUDIES.map((cs) => ({
+  href: localizedUrl(locale, cs.path),
+  label: caseStudyLabel(cs, locale),
+}));
 
 const deHref = switchLocaleUrl(Astro.url.pathname, locale, 'de');
 const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
@@ -37,19 +41,49 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
 
 <nav>
   <div class="shell bar">
-    <a class="wordmark" href={home}>{SITE.wordmark}</a>
+    <a class="brand" href={home}>
+      <img
+        class="logo-mark"
+        src={`${import.meta.env.BASE_URL}assets/logo-mark.png`}
+        alt=""
+        width="32"
+        height="32"
+      />
+      <span class="wordmark">{SITE.wordmark}</span>
+    </a>
     <div class="links">
       {
         links.map((l) => (
-          <a
-            class:list={['navlink', { current: l.current }]}
-            href={l.href}
-            aria-current={l.current ? 'page' : undefined}
-          >
+          <a class="navlink" href={l.href}>
             {l.label}
           </a>
         ))
       }
+      <details class:list={['nav-dd', { current: caseStudyOpen }]}>
+        <summary class="navlink nav-dd-trigger" aria-label={copy.nav.caseStudiesMenu}>
+          <span>{copy.nav.caseStudies}</span>
+          <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+            <path
+              d="M2.5 4.5 L6 8 L9.5 4.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </summary>
+        <ul class="nav-dd-menu" role="list">
+          {
+            caseStudies.map((cs) => (
+              <li>
+                <a class="nav-dd-item" href={cs.href}>
+                  {cs.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
     </div>
     <div class="actions">
       <div class="lang" role="group" aria-label={copy.lang.aria}>
@@ -82,13 +116,24 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
     justify-content: space-between;
     gap: 20px;
   }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: var(--text);
+  }
+  .logo-mark {
+    display: block;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
   .wordmark {
     font-family: var(--serif);
     font-size: 22px;
     font-weight: 600;
     letter-spacing: -0.01em;
-    color: var(--text);
-    flex-shrink: 0;
   }
   .links {
     display: flex;
@@ -97,8 +142,58 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
     font-size: 15px;
     white-space: nowrap;
   }
-  .navlink.current {
+  .nav-dd {
+    position: relative;
+  }
+  .nav-dd-trigger {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+  }
+  .nav-dd-trigger::-webkit-details-marker {
+    display: none;
+  }
+  .nav-dd.current > .nav-dd-trigger,
+  .nav-dd[open] > .nav-dd-trigger {
     color: var(--accent);
+  }
+  .chevron {
+    transition: transform 0.18s ease;
+  }
+  .nav-dd[open] .chevron {
+    transform: rotate(180deg);
+  }
+  .nav-dd-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(var(--fg-rgb), 0.1);
+  }
+  .nav-dd-item {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--navlink);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .nav-dd-item:hover,
+  .nav-dd-item:focus-visible {
+    background: var(--accent-wash);
+    color: var(--accent);
+    outline: none;
   }
   .actions {
     display: flex;
@@ -141,3 +236,19 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
     }
   }
 </style>
+
+<script is:inline>
+  (() => {
+    const dd = document.querySelector('nav .nav-dd');
+    if (!dd) return;
+    const close = (e) => {
+      if (!dd.open) return;
+      if (e.target instanceof Node && dd.contains(e.target)) return;
+      dd.open = false;
+    };
+    document.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') dd.open = false;
+    });
+  })();
+</script>

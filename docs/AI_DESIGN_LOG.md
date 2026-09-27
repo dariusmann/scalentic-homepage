@@ -31,6 +31,27 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-09-27 — Logo mark + favicon
+- Favicon: white-bg green mark → `public/assets/favicon.png` (1024²).
+- Nav brand: transparent green mark → `public/assets/logo-mark.png` beside
+  “scalentic”. Source variants archived under `public/assets/brand/`.
+
+### 2026-09-27 — Manrope only (drop Literata)
+- Site is single-family: Manrope for UI and headlines. `--serif` and `--sans`
+  both point to Manrope. Literata removed from Google Fonts + canvas chart.
+
+### 2026-09-27 — Sans font → Manrope
+- Replaced Hanken Grotesk with Manrope for UI/body (`--sans`). (Superseded —
+  Literata removed entirely; see above.)
+
+### 2026-09-27 — Case studies nav dropdown
+- Nav label is plural: Fallstudien / Case studies. Opens a `<details>` dropdown
+  listing projects from `content/case-studies/index.ts` (`CASE_STUDIES`).
+- Medizinfuchs is first. Add future projects to that array only — Nav + Footer
+  pick them up automatically.
+- Click-outside + Escape close the menu. Desktop only (links still hidden
+  &lt;980px).
+
 ### 2026-09-27 — Models section: cost story, not “best fit”
 - Restored `MfModels` with three concrete points (route by task, compare
   models, build pipeline for cost). Removed empty “→ best fit” rows.

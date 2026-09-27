@@ -77,9 +77,9 @@ Fill these in so AI-generated designs use the right copy. Replace the
 | Primary call-to-action | Book a meeting (uses booking link above) |
 | Services / offerings | <!-- TODO --> |
 | About text | <!-- TODO --> |
-| Logo file | `astro-site/public/assets/favicon.png` |
+| Logo file | Mark: `astro-site/public/assets/logo-mark.png` (transparent). Favicon: `astro-site/public/assets/favicon.png` (white bg). Extra variants in `assets/brand/`. |
 | Brand colors | Light: bg `#f7f9f8`, accent (forest) `#14532d`. Dark: set `data-theme="dark"` on `<html>` — tokens in `astro-site/src/styles/global.css`. |
-| Font(s) | Hanken Grotesk (current site) — change if desired |
+| Font(s) | Manrope (all UI + headlines) |
 
 ---
 

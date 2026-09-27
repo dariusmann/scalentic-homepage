@@ -25,8 +25,8 @@
   --accent-line: rgba(20, 83, 45, 0.45);
   --accent-wash: rgba(20, 83, 45, 0.07);
 
-  --serif: 'Literata', Georgia, 'Times New Roman', serif;
-  --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --serif: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: ui-monospace, 'SF Mono', Menlo, monospace;
 }
 

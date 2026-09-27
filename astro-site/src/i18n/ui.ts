@@ -9,7 +9,8 @@ export type UiCopy = {
     how: string;
     about: string;
     faq: string;
-    caseStudy: string;
+    caseStudies: string;
+    caseStudiesMenu: string;
   };
   eyebrows: {
     automate: string;
@@ -25,6 +26,7 @@ export type UiCopy = {
     contact: string;
     about: string;
     caseStudy: string;
+    caseStudies: string;
     operations: string;
     sales: string;
     marketing: string;
@@ -51,7 +53,8 @@ export const ui: Record<Locale, UiCopy> = {
       how: 'Ablauf',
       about: 'Über mich',
       faq: 'FAQ',
-      caseStudy: 'Fallstudie',
+      caseStudies: 'Fallstudien',
+      caseStudiesMenu: 'Fallstudien öffnen',
     },
     eyebrows: {
       automate: 'Was ich automatisiere',
@@ -68,6 +71,7 @@ export const ui: Record<Locale, UiCopy> = {
       contact: 'Kontakt',
       about: 'Über mich',
       caseStudy: 'Fallstudie',
+      caseStudies: 'Fallstudien',
       operations: 'Operations',
       sales: 'Sales',
       marketing: 'Marketing',
@@ -92,7 +96,8 @@ export const ui: Record<Locale, UiCopy> = {
       how: 'How it works',
       about: 'About',
       faq: 'FAQ',
-      caseStudy: 'Case study',
+      caseStudies: 'Case studies',
+      caseStudiesMenu: 'Open case studies',
     },
     eyebrows: {
       automate: 'What I automate',
@@ -109,6 +114,7 @@ export const ui: Record<Locale, UiCopy> = {
       contact: 'Contact',
       about: 'About',
       caseStudy: 'Case study',
+      caseStudies: 'Case studies',
       operations: 'Operations',
       sales: 'Sales',
       marketing: 'Marketing',
