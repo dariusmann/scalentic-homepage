@@ -31,6 +31,10 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-09-27 — Drop models/routing section from case study
+- Removed `MfModels` (GPT/Gemini/Claude badges + “best fit” routing rows).
+  Vague and duplicated the Tech stack badges. DE + EN content cleaned.
+
 ### 2026-09-27 — Forest + rose surface (branch `design/forest-rose`)
 - Consolidated branch: Medizinfuchs case study + DE/EN i18n + light theme +
   forest green accent. Ancestry:

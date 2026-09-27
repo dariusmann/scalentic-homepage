@@ -199,18 +199,6 @@ export const medizinfuchsDe = {
     },
   },
 
-  models: {
-    eyebrow: 'Modelle',
-    headline: 'Passendes Modell je Aufgabe — Kosten und Qualität im Blick',
-    lead: 'Modellwahl über GPT, Gemini und Claude, optimiert nach Kosten und Qualität.',
-    badges: ['GPT', 'Gemini', 'Claude'],
-    routingLabel: 'Routing',
-    routing: [
-      { task: 'Strukturierte Extraktion', model: 'best fit' },
-      { task: 'Synthese & Guardrails', model: 'best fit' },
-    ],
-  },
-
   tech: {
     eyebrow: 'Technik',
     headline: 'Stack',

@@ -198,18 +198,6 @@ export const medizinfuchsEn = {
     },
   },
 
-  models: {
-    eyebrow: 'Models',
-    headline: 'Best-fit model per task — cost and quality in view',
-    lead: 'Model selection across GPT, Gemini, and Claude, optimized for cost versus quality.',
-    badges: ['GPT', 'Gemini', 'Claude'],
-    routingLabel: 'Routing',
-    routing: [
-      { task: 'Structured extraction', model: 'best fit' },
-      { task: 'Synthesis & guardrails', model: 'best fit' },
-    ],
-  },
-
   tech: {
     eyebrow: 'Tech',
     headline: 'Stack',
