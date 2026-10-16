@@ -31,6 +31,26 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-10-16 — Unpublish the Medizinfuchs case study (code kept)
+- Nav dropdown + footer link removed; both `/case-studies/medizinfuchs` and
+  `/en/case-studies/medizinfuchs` are gone from the build and now 404.
+- **No case study code was deleted.** Two switches, both reversible:
+  1. `published: false` on the entry in `content/case-studies/index.ts`. Nav and
+     Footer render `PUBLISHED_CASE_STUDIES`, not `CASE_STUDIES`.
+  2. Routes moved to `src/pages/_case-studies/` and `src/pages/en/_case-studies/`
+     — Astro skips `_`-prefixed names under `src/pages`. Re-publish steps are in
+     `src/pages/_case-studies/README.md`.
+- Nav wraps the `<details>` dropdown in a `caseStudies.length > 0` guard,
+  otherwise an empty menu renders. Its inline script already no-ops via
+  `if (!dd) return`.
+- Dropped the dead `/case-studies/medizinfuchs` entry from `NAV_LINKS` in
+  `consts.ts` (legacy array, not rendered by `Nav.astro`).
+- **Gotcha:** `scripts/publish-to-root.mjs` only overwrites paths present in
+  `dist/`. Removing a route leaves its published folder at the repo root
+  forever. `en/case-studies/` vanished by luck (all of `en/` is rebuilt), but
+  root `case-studies/` had to be deleted by hand. Check for orphans with
+  `find . -name '*.html' -not -path './astro-site/*'` after unpublishing.
+
 ### 2026-09-27 — Pipeline snake: fix the row-to-row connector
 - The line between “Strukturierte Extraktion” and “Multi-Source-Synthese” did
   not reach either node. The row-to-row link was a hook-shaped SVG placed by

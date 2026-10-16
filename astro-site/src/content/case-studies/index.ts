@@ -10,6 +10,11 @@ export type CaseStudyNavItem = {
   /** Path without leading slash or locale prefix, e.g. case-studies/medizinfuchs */
   path: string;
   navLabel: Record<Locale, string>;
+  /**
+   * Nav/footer only list published studies. Unpublishing also needs the route
+   * taken out of the build — see `src/pages/_case-studies/README.md`.
+   */
+  published: boolean;
 };
 
 export const CASE_STUDIES: CaseStudyNavItem[] = [
@@ -20,8 +25,14 @@ export const CASE_STUDIES: CaseStudyNavItem[] = [
       de: 'Medizinfuchs',
       en: 'Medizinfuchs',
     },
+    published: false,
   },
 ];
+
+/** What Nav and Footer render. Empty means the menu entry disappears entirely. */
+export const PUBLISHED_CASE_STUDIES: CaseStudyNavItem[] = CASE_STUDIES.filter(
+  (cs) => cs.published
+);
 
 export function caseStudyLabel(item: CaseStudyNavItem, locale: Locale): string {
   return item.navLabel[locale];

@@ -7,7 +7,7 @@ import {
   ui,
   type Locale,
 } from '../i18n';
-import { CASE_STUDIES, caseStudyLabel } from '../content/case-studies';
+import { PUBLISHED_CASE_STUDIES, caseStudyLabel } from '../content/case-studies';
 
 interface Props {
   locale?: Locale;
@@ -16,7 +16,7 @@ interface Props {
 const locale = resolveLocale(Astro.props.locale ?? Astro.currentLocale);
 const copy = ui[locale];
 const year = new Date().getFullYear();
-const caseStudies = CASE_STUDIES.map((cs) => ({
+const caseStudies = PUBLISHED_CASE_STUDIES.map((cs) => ({
   href: localizedUrl(locale, cs.path),
   label: caseStudyLabel(cs, locale),
 }));

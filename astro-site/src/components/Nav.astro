@@ -9,7 +9,7 @@ import {
   ui,
   type Locale,
 } from '../i18n';
-import { CASE_STUDIES, caseStudyLabel } from '../content/case-studies';
+import { PUBLISHED_CASE_STUDIES, caseStudyLabel } from '../content/case-studies';
 
 interface Props {
   locale?: Locale;
@@ -30,7 +30,7 @@ const links = [
   { href: sectionUrl(locale, 'faq'), label: copy.nav.faq },
 ];
 
-const caseStudies = CASE_STUDIES.map((cs) => ({
+const caseStudies = PUBLISHED_CASE_STUDIES.map((cs) => ({
   href: localizedUrl(locale, cs.path),
   label: caseStudyLabel(cs, locale),
 }));
@@ -59,31 +59,34 @@ const enHref = switchLocaleUrl(Astro.url.pathname, locale, 'en');
           </a>
         ))
       }
-      <details class:list={['nav-dd', { current: caseStudyOpen }]}>
-        <summary class="navlink nav-dd-trigger" aria-label={copy.nav.caseStudiesMenu}>
-          <span>{copy.nav.caseStudies}</span>
-          <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-            <path
-              d="M2.5 4.5 L6 8 L9.5 4.5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-        </summary>
-        <ul class="nav-dd-menu" role="list">
-          {
-            caseStudies.map((cs) => (
-              <li>
-                <a class="nav-dd-item" href={cs.href}>
-                  {cs.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </details>
+      {
+        caseStudies.length > 0 && (
+          <details class:list={['nav-dd', { current: caseStudyOpen }]}>
+            <summary class="navlink nav-dd-trigger" aria-label={copy.nav.caseStudiesMenu}>
+              <span>{copy.nav.caseStudies}</span>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                <path
+                  d="M2.5 4.5 L6 8 L9.5 4.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </summary>
+            <ul class="nav-dd-menu" role="list">
+              {caseStudies.map((cs) => (
+                <li>
+                  <a class="nav-dd-item" href={cs.href}>
+                    {cs.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )
+      }
     </div>
     <div class="actions">
       <div class="lang" role="group" aria-label={copy.lang.aria}>
