@@ -31,6 +31,12 @@ Context for the next AI design iteration. Read this + `SITE_INFO.md` first.
 
 ## Change log
 
+### 2026-10-25 — New profile photo (green background)
+- Replaced `astro-site/public/images/darius.jpg` (used by `About.astro`) in place,
+  same 1888×2004 size. Photos dropped into root `assets/` get wiped by
+  `npm run publish` (it replaces root `assets/` from `dist/`), so copy them into
+  `astro-site/public/` first. `assets/darius-mann.jpg` is an unused old copy.
+
 ### 2026-10-16 — Unpublish the Medizinfuchs case study (code kept)
 - Nav dropdown + footer link removed; both `/case-studies/medizinfuchs` and
   `/en/case-studies/medizinfuchs` are gone from the build and now 404.
